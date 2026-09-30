@@ -1,0 +1,152 @@
+============================================================
+Duration literals
+============================================================
+
+```catala
+declaration d content duration equals 1 year + 2 month + 3 day
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (DURATION)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (literal
+              (INT_LITERAL)
+              (unit_literal
+                (YEAR)))
+            (PLUS)
+            (literal
+              (INT_LITERAL)
+              (unit_literal
+                (MONTH))))
+          (PLUS)
+          (literal
+            (INT_LITERAL)
+            (unit_literal
+              (DAY))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Duration units as identifiers (ABI 14)
+============================================================
+
+```catala
+declaration scope A:
+  input year content integer
+  output x content integer
+
+scope A:
+  definition x equals month + day
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope_decl
+      (DECLARATION)
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER)))))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_binop
+            (e_variable
+              (variable))
+            (PLUS)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Duration units as identifiers (ABI 15)
+============================================================
+
+```catala
+declaration scope A:
+  input year content integer
+  output x content integer
+
+scope A:
+  definition x equals month + day
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope_decl
+      (DECLARATION)
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT)
+          (ERROR
+            (YEAR)
+            (CONTENT)
+            (INTEGER))
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER)))))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON))
+    (ERROR
+      (DEFINITION)
+      (scope_var
+        (variable))
+      (DEFINED_AS)
+      (MONTH)
+      (PLUS)
+      (DAY))
+    (end_block_fence
+      (END_CODE))))
