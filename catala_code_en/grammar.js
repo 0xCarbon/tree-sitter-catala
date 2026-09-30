@@ -569,11 +569,15 @@ const definition = {
       prec.right('top_expr', seq($.COMBINE, $.ALL, $.binder, $.AMONG, field('coll', $._expr),
                              $.IN, $.binder, $.INITIALLY, field('acc', $._expr),
                              $.WITH, field('mapf', $._expr))),
+    // As in the compiler's parser (opt_or_if_empty and ordering_criteria,
+    // %prec apply), the collection or default of an extremum and the last
+    // sorting criterion bind tighter than binary operators: `maximum of l + 1`
+    // is `(maximum of l) + 1`
     e_coll_extremum: $ =>
-      prec.right(seq(choice($.MINIMUM, $.MAXIMUM), $.OF, field('coll', $._expr),
+      prec.right('apply', seq(choice($.MINIMUM, $.MAXIMUM), $.OF, field('coll', $._expr),
                      optional(seq($.OR_EMPTY, $.THEN, field('dft', $._expr))))),
     e_coll_sort: $ =>
-      prec.right(choice(
+      prec.right('apply', choice(
         seq($.SORT, field('coll', $._expr),
             choice($.ORDER_INCREASING, $.ORDER_DECREASING)),
         seq($.SORT, $.ALL, $.binder, $.AMONG, field('coll', $._expr),
@@ -638,11 +642,18 @@ const definition = {
           seq($.MAP_EACH, $.binder, $.AMONG, field('coll', $._expr),
               $.SUCH, $.THAT, field('cond', $._expr), $.TO, field('mapf', $._expr))
       ),
+    // The condition extends as far as possible (minmax_default, %prec
+    // top_expr), but a default binds tighter than binary operators
+    // (opt_or_if_empty, %prec apply)
     e_coll_find: $ =>
-      prec.right(seq($.CONTENT, $.OF, $.binder, $.AMONG, field('coll', $._expr),
-                     $.SUCH, $.THAT, field('mapf', $._expr),
-                     optional(seq($.IS, choice($.MINIMUM,$.MAXIMUM),
-                                  optional(seq($.OR_EMPTY, $.THEN, field('dft', $._expr))))))),
+      choice(
+        prec.right(seq($.CONTENT, $.OF, $.binder, $.AMONG, field('coll', $._expr),
+                       $.SUCH, $.THAT, field('mapf', $._expr),
+                       optional(seq($.IS, choice($.MINIMUM,$.MAXIMUM))))),
+        prec.right('apply', seq($.CONTENT, $.OF, $.binder, $.AMONG, field('coll', $._expr),
+                                $.SUCH, $.THAT, field('mapf', $._expr),
+                                $.IS, choice($.MINIMUM,$.MAXIMUM),
+                                $.OR_EMPTY, $.THEN, field('dft', $._expr)))),
 
     struct_content_field: $ =>
       seq($.qfield, $.COLON, $._expr),
