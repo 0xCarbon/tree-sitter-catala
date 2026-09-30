@@ -1,0 +1,871 @@
+============================================================
+Multi-word keyword prefix of an identifier: lub jeżeli lista pusta
+============================================================
+
+```catala
+deklaracja l typu lista całkowita wynosi [1; 2]
+deklaracja a typu zerojedynkowy wynosi prawda
+deklaracja b typu zerojedynkowy wynosi
+  a lub jeżeli lista pusta_x wśród l takie że to pusta_x > 1 wtedy a inaczej a
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_collection
+          (LBRACKET)
+          (collection_elements
+            (literal
+              (INT_LITERAL))
+            (SEMICOLON)
+            (literal
+              (INT_LITERAL)))
+          (RBRACKET))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (TRUE))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_variable
+            (variable))
+          (OR)
+          (e_ifthenelse
+            (IF)
+            (e_coll_filter
+              (LIST)
+              (binder
+                (variable))
+              (AMONG)
+              (e_variable
+                (variable))
+              (SUCH)
+              (THAT)
+              (e_binop
+                (e_variable
+                  (variable))
+                (GREATER)
+                (literal
+                  (INT_LITERAL))))
+            (THEN)
+            (e_variable
+              (variable))
+            (ELSE)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Multi-word keywords
+============================================================
+
+```catala
+deklaracja struktura P:
+  dane n typu całkowita
+
+deklaracja enumeracja E:
+  -- A typu całkowita
+  -- B
+
+deklaracja zakres S:
+  wejście l typu lista całkowita
+  wejście c typu zerojedynkowy
+  wejście p typu P
+  wejście v typu E
+  wyjście f typu całkowita zależy od x typu całkowita
+  wyjście m typu lista całkowita
+  wyjście q typu lista całkowita
+  wyjście t typu lista całkowita
+  wyjście e typu zerojedynkowy
+  wyjście k typu całkowita
+  wyjście s typu całkowita
+  wyjście r typu P
+  wyjście g typu lista całkowita
+
+zakres S:
+  definicja f z x pod warunkiem c konsekwencja wynosi x
+  definicja m wynosi plan każdy x wśród l do x + 1
+  definicja q wynosi
+    sort wszystkie x wśród l by decreasing order z x and then - x
+  definicja t wynosi sort l by increasing order
+  definicja e wynosi v ze wzorem A
+  definicja k wynosi maksimum z l lub jeżeli lista pusta wtedy 0
+  definicja s wynosi
+    połączyć wszystkie x wśród l w acc początkowo 0 wraz z acc + x
+  definicja r wynosi p ale zastąpić { -- n: 1 }
+  definicja g wynosi lista x wśród l takie że to x > 0
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (struct_decl
+      (DECLARATION)
+      (STRUCT)
+      (enum_struct_name)
+      (COLON)
+      (struct_decl_item
+        (DATA)
+        (field_name)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER)))))
+    (enum_decl
+      (DECLARATION)
+      (ENUM)
+      (enum_struct_name)
+      (COLON)
+      (ALT)
+      (enum_decl_item
+        (constructor_name)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (ALT)
+      (enum_decl_item
+        (constructor_name)))
+    (scope_decl
+      (DECLARATION)
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (LIST)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (BOOLEAN))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (qenum_struct
+              (enum_struct_name)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (qenum_struct
+              (enum_struct_name)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER)))
+        (DEPENDS)
+        (params_decl
+          (param_decl
+            (variable)
+            (CONTENT)
+            (typ
+              (primitive_typ
+                (INTEGER))))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (LIST)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (LIST)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (LIST)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (BOOLEAN))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (qenum_struct
+              (enum_struct_name)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (LIST)
+          (typ
+            (primitive_typ
+              (INTEGER))))))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (OF)
+        (rule_parameters
+          (variable))
+        (UNDER_CONDITION)
+        (expression
+          (e_variable
+            (variable)))
+        (CONSEQUENCE)
+        (DEFINED_AS)
+        (expression
+          (e_variable
+            (variable))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_map
+            (MAP_EACH)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (TO)
+            (e_binop
+              (e_variable
+                (variable))
+              (PLUS)
+              (literal
+                (INT_LITERAL))))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_sort
+            (SORT)
+            (ALL)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (ORDER_DECREASING)
+            (OF)
+            (e_variable
+              (variable))
+            (AND_THEN)
+            (e_unop
+              (MINUS)
+              (e_variable
+                (variable))))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_sort
+            (SORT)
+            (e_variable
+              (variable))
+            (ORDER_INCREASING))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_test_match
+            (e_variable
+              (variable))
+            (WITH_PATT)
+            (qconstructor
+              (constructor_name)))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_extremum
+            (MAXIMUM)
+            (OF)
+            (e_variable
+              (variable))
+            (OR_EMPTY)
+            (THEN)
+            (literal
+              (INT_LITERAL)))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_fold
+            (COMBINE)
+            (ALL)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (IN)
+            (binder
+              (variable))
+            (INITIALLY)
+            (literal
+              (INT_LITERAL))
+            (WITH)
+            (e_binop
+              (e_variable
+                (variable))
+              (PLUS)
+              (e_variable
+                (variable))))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_but_replace
+            (e_variable
+              (variable))
+            (BUT_REPLACE)
+            (LBRACE)
+            (struct_content_fields
+              (ALT)
+              (struct_content_field
+                (qfield
+                  (field_name))
+                (COLON)
+                (literal
+                  (INT_LITERAL))))
+            (RBRACE))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_filter
+            (LIST)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (SUCH)
+            (THAT)
+            (e_binop
+              (e_variable
+                (variable))
+              (GREATER)
+              (literal
+                (INT_LITERAL)))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Multi-word keywords across lines and spaces
+============================================================
+
+```catala
+deklaracja l typu lista całkowita wynosi [1]
+deklaracja m typu lista całkowita wynosi
+  plan
+    każdy x wśród l do x
+deklaracja k typu całkowita wynosi maksimum z l lub   jeżeli
+  lista pusta wtedy 0
+deklaracja g typu lista całkowita wynosi lista x wśród l takie
+  że to x > 0
+deklaracja s typu całkowita wynosi
+  połączyć wszystkie x wśród l w acc początkowo 0 wraz
+    z acc + x
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_collection
+          (LBRACKET)
+          (collection_elements
+            (literal
+              (INT_LITERAL)))
+          (RBRACKET))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_map
+          (MAP_EACH)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (TO)
+          (e_variable
+            (variable)))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_coll_extremum
+          (MAXIMUM)
+          (OF)
+          (e_variable
+            (variable))
+          (OR_EMPTY)
+          (THEN)
+          (literal
+            (INT_LITERAL)))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_filter
+          (LIST)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (SUCH)
+          (THAT)
+          (e_binop
+            (e_variable
+              (variable))
+            (GREATER)
+            (literal
+              (INT_LITERAL))))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_coll_fold
+          (COMBINE)
+          (ALL)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (IN)
+          (binder
+            (variable))
+          (INITIALLY)
+          (literal
+            (INT_LITERAL))
+          (WITH)
+          (e_binop
+            (e_variable
+              (variable))
+            (PLUS)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+First words of multi-word keywords as identifiers
+============================================================
+
+```catala
+deklaracja and typu całkowita wynosi 1
+deklaracja by typu całkowita wynosi and
+deklaracja zależy typu całkowita wynosi by
+deklaracja ze typu całkowita wynosi zależy
+deklaracja pod typu całkowita wynosi ze
+deklaracja wraz typu całkowita wynosi pod
+deklaracja plan typu całkowita wynosi wraz
+deklaracja takie typu całkowita wynosi plan
+deklaracja ale typu całkowita wynosi takie
+deklaracja pusta typu całkowita wynosi ale
+deklaracja then typu całkowita wynosi pusta
+deklaracja l typu lista całkowita wynosi [and; then]
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (INT_LITERAL))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_collection
+          (LBRACKET)
+          (collection_elements
+            (e_variable
+              (variable))
+            (SEMICOLON)
+            (e_variable
+              (variable)))
+          (RBRACKET))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Multi-word keyword prefix of an identifier: plan każdy (error)
+============================================================
+
+```catala
+deklaracja l typu lista całkowita wynosi [1]
+deklaracja m typu lista całkowita wynosi
+  plan każdy_x wśród l do x
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_collection
+          (LBRACKET)
+          (collection_elements
+            (literal
+              (INT_LITERAL)))
+          (RBRACKET))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (ERROR
+      (AMONG)
+      (TO))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Ordering keyword with two spaces (error)
+============================================================
+
+```catala
+deklaracja l typu lista całkowita wynosi [1]
+deklaracja s typu lista całkowita wynosi
+  sort l by  increasing order
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_collection
+          (LBRACKET)
+          (collection_elements
+            (literal
+              (INT_LITERAL)))
+          (RBRACKET))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER)))))
+    (ERROR
+      (DEFINED_AS)
+      (SORT)
+      (ERROR))
+    (end_block_fence
+      (END_CODE))))

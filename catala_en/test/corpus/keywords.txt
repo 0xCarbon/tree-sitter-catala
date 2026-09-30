@@ -1,0 +1,1007 @@
+============================================================
+Multi-word keyword prefix of an identifier: and then
+============================================================
+
+```catala
+declaration a content boolean equals true
+declaration then_x content boolean equals false
+declaration then2 content boolean equals false
+declaration then' content boolean equals false
+declaration thenà content boolean equals false
+declaration b content boolean equals a and then_x
+declaration c content boolean equals
+  a and then2 and then' and thenà
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (TRUE))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (FALSE))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (FALSE))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (FALSE))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (FALSE))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_variable
+            (variable))
+          (AND)
+          (e_variable
+            (variable)))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_variable
+            (variable))
+          (AND)
+          (e_binop
+            (e_variable
+              (variable))
+            (AND)
+            (e_binop
+              (e_variable
+                (variable))
+              (AND)
+              (e_variable
+                (variable)))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Multi-word keyword prefix of an identifier: with pattern
+============================================================
+
+```catala
+declaration pattern_x content integer equals 1
+declaration l content list of integer equals [1; 2]
+declaration n content integer equals
+  combine all x among l in acc initially 0 with pattern_x
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (INT_LITERAL))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_collection
+          (LBRACKET)
+          (collection_elements
+            (literal
+              (INT_LITERAL))
+            (SEMICOLON)
+            (literal
+              (INT_LITERAL)))
+          (RBRACKET))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_coll_fold
+          (COMBINE)
+          (ALL)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (IN)
+          (binder
+            (variable))
+          (INITIALLY)
+          (literal
+            (INT_LITERAL))
+          (WITH)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Multi-word keywords
+============================================================
+
+```catala
+declaration structure P:
+  data n content integer
+
+declaration enumeration E:
+  -- A content integer
+  -- B
+
+declaration scope S:
+  input l content list of integer
+  input o content optional of integer
+  input c content boolean
+  input p content P
+  input v content E
+  output f content integer depends on x content integer
+  output m content list of integer
+  output q content list of integer
+  output b content boolean
+  output e content boolean
+  output k content integer
+  output d content integer
+  output r content P
+
+scope S:
+  definition f of x under condition c consequence equals x
+  definition m equals map each x among l to x + 1
+  definition q equals
+    sort all x among l in decreasing order of x and then - x
+  definition b equals for all x among l we have x > 0
+  definition e equals v with pattern A
+  definition k equals maximum of l or if list empty then 0
+  definition d equals match v with pattern
+    -- A content y: y
+    -- B: 0
+  definition r equals p but replace { -- n: 1 }
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (struct_decl
+      (DECLARATION)
+      (STRUCT)
+      (enum_struct_name)
+      (COLON)
+      (struct_decl_item
+        (DATA)
+        (field_name)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER)))))
+    (enum_decl
+      (DECLARATION)
+      (ENUM)
+      (enum_struct_name)
+      (COLON)
+      (ALT)
+      (enum_decl_item
+        (constructor_name)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (ALT)
+      (enum_decl_item
+        (constructor_name)))
+    (scope_decl
+      (DECLARATION)
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (LIST)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (OPTION)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (BOOLEAN))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (qenum_struct
+              (enum_struct_name)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (INPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (qenum_struct
+              (enum_struct_name)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER)))
+        (DEPENDS)
+        (params_decl
+          (param_decl
+            (variable)
+            (CONTENT)
+            (typ
+              (primitive_typ
+                (INTEGER))))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (LIST)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (LIST)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (BOOLEAN))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (BOOLEAN))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (qenum_struct
+              (enum_struct_name))))))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (OF)
+        (rule_parameters
+          (variable))
+        (UNDER_CONDITION)
+        (expression
+          (e_variable
+            (variable)))
+        (CONSEQUENCE)
+        (DEFINED_AS)
+        (expression
+          (e_variable
+            (variable))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_map
+            (MAP_EACH)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (TO)
+            (e_binop
+              (e_variable
+                (variable))
+              (PLUS)
+              (literal
+                (INT_LITERAL))))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_sort
+            (SORT)
+            (ALL)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (ORDER_DECREASING)
+            (OF)
+            (e_variable
+              (variable))
+            (AND_THEN)
+            (e_unop
+              (MINUS)
+              (e_variable
+                (variable))))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_forall
+            (FOR)
+            (ALL)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (WE_HAVE)
+            (e_binop
+              (e_variable
+                (variable))
+              (GREATER)
+              (literal
+                (INT_LITERAL))))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_test_match
+            (e_variable
+              (variable))
+            (WITH_PATT)
+            (qconstructor
+              (constructor_name)))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_extremum
+            (MAXIMUM)
+            (OF)
+            (e_variable
+              (variable))
+            (OR_EMPTY)
+            (THEN)
+            (literal
+              (INT_LITERAL)))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_match
+            (MATCH)
+            (e_variable
+              (variable))
+            (WITH_PATT)
+            (ALT)
+            (match_case
+              (qconstructor
+                (constructor_name))
+              (CONTENT)
+              (binder
+                (variable))
+              (COLON)
+              (e_variable
+                (variable)))
+            (ALT)
+            (match_case
+              (qconstructor
+                (constructor_name))
+              (COLON)
+              (literal
+                (INT_LITERAL))))))
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_but_replace
+            (e_variable
+              (variable))
+            (BUT_REPLACE)
+            (LBRACE)
+            (struct_content_fields
+              (ALT)
+              (struct_content_field
+                (qfield
+                  (field_name))
+                (COLON)
+                (literal
+                  (INT_LITERAL))))
+            (RBRACE)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Multi-word keywords across lines and spaces
+============================================================
+
+```catala
+declaration l content list
+  of integer equals [1]
+declaration m content list   of integer equals
+  map
+    each x among l to x
+declaration b content boolean equals
+  for all x among l we
+  have x > 0
+declaration k content integer equals maximum of l or   if
+  list empty then 0
+declaration s content list of integer equals
+  sort l in increasing order
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_collection
+          (LBRACKET)
+          (collection_elements
+            (literal
+              (INT_LITERAL)))
+          (RBRACKET))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_map
+          (MAP_EACH)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (TO)
+          (e_variable
+            (variable)))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_coll_forall
+          (FOR)
+          (ALL)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (WE_HAVE)
+          (e_binop
+            (e_variable
+              (variable))
+            (GREATER)
+            (literal
+              (INT_LITERAL))))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_coll_extremum
+          (MAXIMUM)
+          (OF)
+          (e_variable
+            (variable))
+          (OR_EMPTY)
+          (THEN)
+          (literal
+            (INT_LITERAL)))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_sort
+          (SORT)
+          (e_variable
+            (variable))
+          (ORDER_INCREASING))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+First words of multi-word keywords as identifiers
+============================================================
+
+```catala
+declaration list content integer equals 1
+declaration optional content integer equals list
+declaration depends content integer equals optional + list
+declaration under content integer equals depends
+declaration we content integer equals under
+declaration have content integer equals we
+declaration map content integer equals have
+declaration each content integer equals map
+declaration but content integer equals each
+declaration replace content integer equals but
+declaration increasing content integer equals replace
+declaration order content integer equals increasing
+declaration empty content integer equals order
+declaration l content list of integer equals [list; empty]
+declaration f content list of integer equals
+  list of x among l such that x > list
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (INT_LITERAL))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_variable
+            (variable))
+          (PLUS)
+          (e_variable
+            (variable)))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_collection
+          (LBRACKET)
+          (collection_elements
+            (e_variable
+              (variable))
+            (SEMICOLON)
+            (e_variable
+              (variable)))
+          (RBRACKET))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_filter
+          (LIST)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (SUCH)
+          (THAT)
+          (e_binop
+            (e_variable
+              (variable))
+            (GREATER)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Multi-word keyword prefix of an identifier: map each (error)
+============================================================
+
+```catala
+declaration l content list of integer equals [1]
+declaration s content list of integer equals
+  map each_x among l to x
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_collection
+          (LBRACKET)
+          (collection_elements
+            (literal
+              (INT_LITERAL)))
+          (RBRACKET))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (ERROR
+      (AMONG)
+      (TO))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Ordering keyword with two spaces (error)
+============================================================
+
+```catala
+declaration l content list of integer equals [1]
+declaration s content list of integer equals
+  sort l in  increasing order
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_collection
+          (LBRACKET)
+          (collection_elements
+            (literal
+              (INT_LITERAL)))
+          (RBRACKET))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER)))))
+    (ERROR
+      (DEFINED_AS)
+      (SORT)
+      (ERROR))
+    (end_block_fence
+      (END_CODE))))
