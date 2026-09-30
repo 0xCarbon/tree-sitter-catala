@@ -4024,13 +4024,6 @@
         "value": "dane"
       }
     },
-    "DEPENDS": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "zależy\\s+od"
-      }
-    },
     "DECLARATION": {
       "type": "TOKEN",
       "content": {
@@ -4213,20 +4206,6 @@
         "value": "rodzaj"
       }
     },
-    "WITH_PATT": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "ze\\s+wzorem"
-      }
-    },
-    "UNDER_CONDITION": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "pod\\s+warunkiem"
-      }
-    },
     "IF": {
       "type": "TOKEN",
       "content": {
@@ -4274,13 +4253,6 @@
       "content": {
         "type": "STRING",
         "value": "asercja"
-      }
-    },
-    "WITH": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "wraz\\s+z"
       }
     },
     "FOR": {
@@ -4339,13 +4311,6 @@
         "value": "wśród"
       }
     },
-    "SUCH": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "takie\\s+że"
-      }
-    },
     "THAT": {
       "type": "TOKEN",
       "content": {
@@ -4381,13 +4346,6 @@
         "value": "połączyć"
       }
     },
-    "MAP_EACH": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "plan każdy"
-      }
-    },
     "TO": {
       "type": "TOKEN",
       "content": {
@@ -4416,20 +4374,6 @@
         "value": "jest"
       }
     },
-    "OR_EMPTY": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "lub\\s+jeżeli\\s+lista\\s+pusta"
-      }
-    },
-    "BUT_REPLACE": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "ale\\s+zastąpić"
-      }
-    },
     "CARDINAL": {
       "type": "TOKEN",
       "content": {
@@ -4442,27 +4386,6 @@
       "content": {
         "type": "STRING",
         "value": "sort"
-      }
-    },
-    "ORDER_INCREASING": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "by\\s+increasing\\s+order"
-      }
-    },
-    "ORDER_DECREASING": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "by\\s+decreasing\\s+order"
-      }
-    },
-    "AND_THEN": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "and\\s+then"
       }
     },
     "YEAR": {
@@ -5083,7 +5006,92 @@
       }
     ]
   ],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "SCOPE"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "DEPENDS"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "DECREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "INCREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "LIST"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "OPTION"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "DEFINED_AS"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WILDCARD"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WITH_PATT"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "UNDER_CONDITION"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WITH"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WE_HAVE"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "MAP_EACH"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "TO"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "SUCH"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "ORDER_INCREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "ORDER_DECREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "AND_THEN"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "XOR"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "OR_EMPTY"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "BUT_REPLACE"
+    }
+  ],
   "inline": [],
   "supertypes": [],
   "reserved": {}

@@ -2574,10 +2574,6 @@
           "named": true
         },
         {
-          "type": "OF",
-          "named": true
-        },
-        {
           "type": "SUCH",
           "named": true
         },
@@ -8386,10 +8382,6 @@
         },
         {
           "type": "LPAREN",
-          "named": true
-        },
-        {
-          "type": "OF",
           "named": true
         },
         {

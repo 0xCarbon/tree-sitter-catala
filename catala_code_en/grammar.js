@@ -10,19 +10,27 @@ if ('TREESITTER_CATALA_VARIANT' in process.env) {
 
 const name = (variant+"_"+lang)
 
+// A multi-word keyword, lexed by the external scanner (scanner.c) from the
+// language's table (scanner_<lang>.h), which also gives the separator between
+// its words. The text here only documents it. The scanner matches the keyword
+// only when each of its words is a whole word, as the compiler does ("a and
+// then_x" is "a", "and" and the identifier "then_x"), which a regular
+// expression cannot express.
+const words = text => ({ words: text })
+
 const tokens_local = {
   en: {
     SCOPE: "scope",
     CONSEQUENCE: "consequence",
     DATA: "data",
-    DEPENDS: /depends\s+on/,
+    DEPENDS: words("depends on"),
     DECLARATION: "declaration",
     CONTEXT: "context",
     DECREASING: "down",
     INCREASING: "up",
     OF: "of",
-    LIST: "list",
-    OPTION: "optional",
+    LIST: words("list of"),
+    OPTION: words("optional of"),
     CONTAINS: "contains",
     ENUM: "enumeration",
     INTEGER: "integer",
@@ -42,8 +50,8 @@ const tokens_local = {
     MATCH: "match",
     WILDCARD: "anything",
     TYPE: "type",
-    WITH_PATT: /with\s+pattern/,
-    UNDER_CONDITION: /under\s+condition/,
+    WITH_PATT: words("with pattern"),
+    UNDER_CONDITION: words("under condition"),
     IF: "if",
     THEN: "then",
     ELSE: "else",
@@ -54,7 +62,7 @@ const tokens_local = {
     WITH: "with",
     FOR: "for",
     ALL: "all",
-    WE_HAVE: /we\s+have/,
+    WE_HAVE: words("we have"),
     RULE: "rule",
     LET: "let",
     EXISTS: "exists",
@@ -69,18 +77,18 @@ const tokens_local = {
     MAXIMUM: "maximum",
     MINIMUM: "minimum",
     COMBINE: "combine",
-    MAP_EACH: /map\s+each/,
+    MAP_EACH: words("map each"),
     TO: /to/,
     INITIALLY: "initially",
     IMPOSSIBLE: "impossible",
     IS: "is",
-    OR_EMPTY: /or\s+if\s+list\s+empty/,
-    BUT_REPLACE: /but\s+replace/,
+    OR_EMPTY: words("or if list empty"),
+    BUT_REPLACE: words("but replace"),
     CARDINAL: "number",
     SORT: "sort",
-    ORDER_INCREASING: /in\s+increasing\s+order/,
-    ORDER_DECREASING: /in\s+decreasing\s+order/,
-    AND_THEN: /and\s+then/,
+    ORDER_INCREASING: words("in increasing order"),
+    ORDER_DECREASING: words("in decreasing order"),
+    AND_THEN: words("and then"),
     YEAR: "year",
     MONTH: "month",
     DAY: "day",
@@ -100,17 +108,17 @@ const tokens_local = {
     EXTERNAL: 'external',
   },
   fr: {
-    SCOPE: /champ\s+d'application/,
+    SCOPE: words("champ d'application"),
     CONSEQUENCE: "conséquence",
     DATA: "donnée",
-    DEPENDS: /dépend\s+de/,
+    DEPENDS: words("dépend de"),
     DECLARATION: "déclaration",
     CONTEXT: "contexte",
     DECREASING: "inférieur",
     INCREASING: "supérieur",
     OF: "de",
-    LIST: "liste",
-    OPTION: "optionnel",
+    LIST: words("liste de"),
+    OPTION: words("optionnel de"),
     CONTAINS: "contient",
     ENUM: "énumération",
     INTEGER: "entier",
@@ -126,12 +134,12 @@ const tokens_local = {
     STATE: "état",
     LABEL: "étiquette",
     EXCEPTION: "exception",
-    DEFINED_AS: /égal\s+à/,
+    DEFINED_AS: words("égal à"),
     MATCH: "selon",
-    WILDCARD: /n'importe\s+quel/,
+    WILDCARD: words("n'importe quel"),
     TYPE: "type",
-    WITH_PATT: /sous\s+forme/,
-    UNDER_CONDITION: /sous\s+condition/,
+    WITH_PATT: words("sous forme"),
+    UNDER_CONDITION: words("sous condition"),
     IF: "si",
     THEN: "alors",
     ELSE: "sinon",
@@ -142,7 +150,7 @@ const tokens_local = {
     WITH: "avec",
     FOR: "pour",
     ALL: "tout",
-    WE_HAVE: /on\s+a/,
+    WE_HAVE: words("on a"),
     RULE: "règle",
     LET: "soit",
     EXISTS: "existe",
@@ -152,22 +160,22 @@ const tokens_local = {
     THAT: "que",
     AND: "et",
     OR: "ou",
-    XOR: /ou\s+bien/,
+    XOR: words("ou bien"),
     NOT: "non",
     MAXIMUM: "maximum",
     MINIMUM: "minimum",
     COMBINE: /combine/,
-    MAP_EACH: /transforme\s+chaque/,
+    MAP_EACH: words("transforme chaque"),
     TO: /en/,
     INITIALLY: "initialement",
     IMPOSSIBLE: "impossible",
     IS: "est",
-    OR_EMPTY: /ou\s+si\s+liste\s+vide/,
-    BUT_REPLACE: /mais\s+en\s+remplaçant/,
+    OR_EMPTY: words("ou si liste vide"),
+    BUT_REPLACE: words("mais en remplaçant"),
     CARDINAL: "nombre",
     SORT: "trie",
-    ORDER_INCREASING: /par\s+ordre\s+croissant/,
-    ORDER_DECREASING: /par\s+ordre\s+décroissant/,
+    ORDER_INCREASING: words("par ordre croissant"),
+    ORDER_DECREASING: words("par ordre décroissant"),
     AND_THEN: "puis",
     YEAR: "an",
     MONTH: "mois",
@@ -183,23 +191,20 @@ const tokens_local = {
     OP_KIND_SUFFIX: /[!.@^€]?/,
     LAW_INCLUDE: 'Inclusion',
     MODULE_DEF: 'Module',
-    MODULE_USE: /Usage\s+de/,
-    MODULE_ALIAS: /en\s+tant\s+que/,
+    MODULE_USE: /Usage[^\S\r\n]*de/,
+    MODULE_ALIAS: /en[^\S\r\n]*tant[^\S\r\n]*que/,
     EXTERNAL: 'externe',
   },
   pl: {
     SCOPE: "zakres",
     CONSEQUENCE: "konsekwencja",
     DATA: "dane",
-    DEPENDS: /zależy\s+od/,
+    DEPENDS: words("zależy od"),
     DECLARATION: "deklaracja",
     CONTEXT: "kontekst",
     DECREASING: "dół",
     INCREASING: "górę",
     OF: "z",
-    // The Polish lexer's LIST and OPTION tokens take no following OF
-    // ("lista całkowita", "lista x wśród …"), unlike "list of"/"liste de"
-    LIST_TAKES_OF: false,
     LIST: "lista",
     OPTION: "opcjonalny",
     CONTAINS: "zawiera",
@@ -221,8 +226,8 @@ const tokens_local = {
     MATCH: "pasuje",
     WILDCARD: "cokolwiek",
     TYPE: "rodzaj",
-    WITH_PATT: /ze\s+wzorem/,
-    UNDER_CONDITION: /pod\s+warunkiem/,
+    WITH_PATT: words("ze wzorem"),
+    UNDER_CONDITION: words("pod warunkiem"),
     IF: "jeżeli",
     THEN: "wtedy",
     ELSE: "inaczej",
@@ -230,7 +235,7 @@ const tokens_local = {
     CONTENT: "typu",
     STRUCT: "struktura",
     ASSERTION: "asercja",
-    WITH: /wraz\s+z/,
+    WITH: words("wraz z"),
     FOR: "dla",
     ALL: "wszystkie",
     WE_HAVE: "mamy",
@@ -239,7 +244,7 @@ const tokens_local = {
     EXISTS: "istnieje",
     IN: "w",
     AMONG: "wśród",
-    SUCH: /takie\s+że/,
+    SUCH: words("takie że"),
     THAT: "to",
     AND: "i",
     OR: "lub",
@@ -248,18 +253,18 @@ const tokens_local = {
     MAXIMUM: "maksimum",
     MINIMUM: "minimum",
     COMBINE: "połączyć",
-    MAP_EACH: "plan każdy",
+    MAP_EACH: words("plan każdy"),
     TO: "do",
     INITIALLY: "początkowo",
     IMPOSSIBLE: "niemożliwe",
     IS: "jest",
-    OR_EMPTY: /lub\s+jeżeli\s+lista\s+pusta/,
-    BUT_REPLACE: /ale\s+zastąpić/,
+    OR_EMPTY: words("lub jeżeli lista pusta"),
+    BUT_REPLACE: words("ale zastąpić"),
     CARDINAL: "liczba",
     SORT: "sort",
-    ORDER_INCREASING: /by\s+increasing\s+order/,
-    ORDER_DECREASING: /by\s+decreasing\s+order/,
-    AND_THEN: /and\s+then/,
+    ORDER_INCREASING: words("by increasing order"),
+    ORDER_DECREASING: words("by decreasing order"),
+    AND_THEN: words("and then"),
     YEAR: "rok",
     MONTH: "miesiąc",
     DAY: "dzień",
@@ -327,15 +332,44 @@ const tokens_international = {
 
 const tokens = Object.assign({}, tokens_local[lang], tokens_international)
 
-// The OF that follows LIST and OPTION, where the language's lexer has one
-const list_of = $ => (tokens.LIST_TAKES_OF === false ? [] : [$.OF])
+// The tokens that the compiler's lexer may lex as a multi-word keyword (the
+// MR_ regexps of the rollback rule of lex_code), in the order of
+// enum TokenType in scanner.c. They are the externals of every grammar: the
+// scanner lexes those that are words(...) in the language and declines the
+// others, which the internal lexer then lexes.
+const scanner_tokens = [
+  'SCOPE',
+  'DEPENDS',
+  'DECREASING',
+  'INCREASING',
+  'LIST',
+  'OPTION',
+  'DEFINED_AS',
+  'WILDCARD',
+  'WITH_PATT',
+  'UNDER_CONDITION',
+  'WITH',
+  'WE_HAVE',
+  'MAP_EACH',
+  'TO',
+  'SUCH',
+  'ORDER_INCREASING',
+  'ORDER_DECREASING',
+  'AND_THEN',
+  'XOR',
+  'OR_EMPTY',
+  'BUT_REPLACE',
+]
+
+const is_words = t => typeof t === 'object' && t !== null && 'words' in t
 
 const inline = $ => [
   // $.law_text,
 ]
 
-module.exports = grammar({
+const definition = {
   name: name,
+  externals: $ => scanner_tokens.map(t => $[t]),
   inline: inline,
   word: $ => $._LIDENT,
   extras: $ => [ /\s/, $.COMMENT, $.ATTRIBUTE ],
@@ -401,8 +435,8 @@ module.exports = grammar({
       seq(repeat(seq($.typ, $.COMMA)), $.typ),
     typ: $ => choice(
       $.primitive_typ,
-      seq ($.LIST, ...list_of($), $.typ),
-      seq ($.OPTION, ...list_of($), $.typ),
+      seq ($.LIST, $.typ),
+      seq ($.OPTION, $.typ),
       seq ($.LPAREN, $.typ_list, $.RPAREN)
     ),
 
@@ -590,7 +624,7 @@ module.exports = grammar({
     e_enum: $ =>
       prec('CONTENT', seq($.qconstructor, optional(seq($.CONTENT, $._expr)))),
     e_coll_filter: $ =>
-      prec.right(seq($.LIST, ...list_of($), $.binder, $.AMONG, field('coll', $._expr), $.SUCH, $.THAT, field('cond', $._expr))),
+      prec.right(seq($.LIST, $.binder, $.AMONG, field('coll', $._expr), $.SUCH, $.THAT, field('cond', $._expr))),
     e_coll_filter_map: $ =>
       prec.right(
           seq($.MAP_EACH, $.binder, $.AMONG, field('coll', $._expr),
@@ -927,4 +961,11 @@ module.exports = grammar({
   OR: $ => token(tokens.OR),
   XOR: $ => token(tokens.XOR),
   }
-})
+}
+
+// The internal lexer must not lex the multi-word keywords: the scanner
+// declines exactly the inputs that the internal lexer has to lex differently
+for (const t of scanner_tokens)
+  if (is_words(tokens[t])) delete definition.rules[t]
+
+module.exports = grammar(definition)

@@ -253,10 +253,6 @@
             },
             {
               "type": "SYMBOL",
-              "name": "OF"
-            },
-            {
-              "type": "SYMBOL",
               "name": "typ"
             }
           ]
@@ -267,10 +263,6 @@
             {
               "type": "SYMBOL",
               "name": "OPTION"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "OF"
             },
             {
               "type": "SYMBOL",
@@ -2287,10 +2279,6 @@
           },
           {
             "type": "SYMBOL",
-            "name": "OF"
-          },
-          {
-            "type": "SYMBOL",
             "name": "binder"
           },
           {
@@ -4036,13 +4024,6 @@
         "value": "data"
       }
     },
-    "DEPENDS": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "depends\\s+on"
-      }
-    },
     "DECLARATION": {
       "type": "TOKEN",
       "content": {
@@ -4076,20 +4057,6 @@
       "content": {
         "type": "STRING",
         "value": "of"
-      }
-    },
-    "LIST": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "list"
-      }
-    },
-    "OPTION": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "optional"
       }
     },
     "CONTAINS": {
@@ -4225,20 +4192,6 @@
         "value": "type"
       }
     },
-    "WITH_PATT": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "with\\s+pattern"
-      }
-    },
-    "UNDER_CONDITION": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "under\\s+condition"
-      }
-    },
     "IF": {
       "type": "TOKEN",
       "content": {
@@ -4307,13 +4260,6 @@
       "content": {
         "type": "STRING",
         "value": "all"
-      }
-    },
-    "WE_HAVE": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "we\\s+have"
       }
     },
     "RULE": {
@@ -4393,13 +4339,6 @@
         "value": "combine"
       }
     },
-    "MAP_EACH": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "map\\s+each"
-      }
-    },
     "TO": {
       "type": "TOKEN",
       "content": {
@@ -4428,20 +4367,6 @@
         "value": "is"
       }
     },
-    "OR_EMPTY": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "or\\s+if\\s+list\\s+empty"
-      }
-    },
-    "BUT_REPLACE": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "but\\s+replace"
-      }
-    },
     "CARDINAL": {
       "type": "TOKEN",
       "content": {
@@ -4454,27 +4379,6 @@
       "content": {
         "type": "STRING",
         "value": "sort"
-      }
-    },
-    "ORDER_INCREASING": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "in\\s+increasing\\s+order"
-      }
-    },
-    "ORDER_DECREASING": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "in\\s+decreasing\\s+order"
-      }
-    },
-    "AND_THEN": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "and\\s+then"
       }
     },
     "YEAR": {
@@ -5095,7 +4999,92 @@
       }
     ]
   ],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "SCOPE"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "DEPENDS"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "DECREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "INCREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "LIST"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "OPTION"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "DEFINED_AS"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WILDCARD"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WITH_PATT"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "UNDER_CONDITION"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WITH"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WE_HAVE"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "MAP_EACH"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "TO"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "SUCH"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "ORDER_INCREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "ORDER_DECREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "AND_THEN"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "XOR"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "OR_EMPTY"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "BUT_REPLACE"
+    }
+  ],
   "inline": [],
   "supertypes": [],
   "reserved": {}

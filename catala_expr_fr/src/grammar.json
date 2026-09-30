@@ -253,10 +253,6 @@
             },
             {
               "type": "SYMBOL",
-              "name": "OF"
-            },
-            {
-              "type": "SYMBOL",
               "name": "typ"
             }
           ]
@@ -267,10 +263,6 @@
             {
               "type": "SYMBOL",
               "name": "OPTION"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "OF"
             },
             {
               "type": "SYMBOL",
@@ -2287,10 +2279,6 @@
           },
           {
             "type": "SYMBOL",
-            "name": "OF"
-          },
-          {
-            "type": "SYMBOL",
             "name": "binder"
           },
           {
@@ -4015,13 +4003,6 @@
         }
       }
     },
-    "SCOPE": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "champ\\s+d'application"
-      }
-    },
     "CONSEQUENCE": {
       "type": "TOKEN",
       "content": {
@@ -4034,13 +4015,6 @@
       "content": {
         "type": "STRING",
         "value": "donnée"
-      }
-    },
-    "DEPENDS": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "dépend\\s+de"
       }
     },
     "DECLARATION": {
@@ -4076,20 +4050,6 @@
       "content": {
         "type": "STRING",
         "value": "de"
-      }
-    },
-    "LIST": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "liste"
-      }
-    },
-    "OPTION": {
-      "type": "TOKEN",
-      "content": {
-        "type": "STRING",
-        "value": "optionnel"
       }
     },
     "CONTAINS": {
@@ -4197,13 +4157,6 @@
         "value": "exception"
       }
     },
-    "DEFINED_AS": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "égal\\s+à"
-      }
-    },
     "MATCH": {
       "type": "TOKEN",
       "content": {
@@ -4211,32 +4164,11 @@
         "value": "selon"
       }
     },
-    "WILDCARD": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "n'importe\\s+quel"
-      }
-    },
     "TYPE": {
       "type": "TOKEN",
       "content": {
         "type": "STRING",
         "value": "type"
-      }
-    },
-    "WITH_PATT": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "sous\\s+forme"
-      }
-    },
-    "UNDER_CONDITION": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "sous\\s+condition"
       }
     },
     "IF": {
@@ -4307,13 +4239,6 @@
       "content": {
         "type": "STRING",
         "value": "tout"
-      }
-    },
-    "WE_HAVE": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "on\\s+a"
       }
     },
     "RULE": {
@@ -4393,13 +4318,6 @@
         "value": "combine"
       }
     },
-    "MAP_EACH": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "transforme\\s+chaque"
-      }
-    },
     "TO": {
       "type": "TOKEN",
       "content": {
@@ -4428,20 +4346,6 @@
         "value": "est"
       }
     },
-    "OR_EMPTY": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "ou\\s+si\\s+liste\\s+vide"
-      }
-    },
-    "BUT_REPLACE": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "mais\\s+en\\s+remplaçant"
-      }
-    },
     "CARDINAL": {
       "type": "TOKEN",
       "content": {
@@ -4454,20 +4358,6 @@
       "content": {
         "type": "STRING",
         "value": "trie"
-      }
-    },
-    "ORDER_INCREASING": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "par\\s+ordre\\s+croissant"
-      }
-    },
-    "ORDER_DECREASING": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "par\\s+ordre\\s+décroissant"
       }
     },
     "AND_THEN": {
@@ -4572,14 +4462,14 @@
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "Usage\\s+de"
+        "value": "Usage[^\\S\\r\\n]*de"
       }
     },
     "MODULE_ALIAS": {
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": "en\\s+tant\\s+que"
+        "value": "en[^\\S\\r\\n]*tant[^\\S\\r\\n]*que"
       }
     },
     "EXTERNAL": {
@@ -4985,13 +4875,6 @@
         "type": "STRING",
         "value": "ou"
       }
-    },
-    "XOR": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "ou\\s+bien"
-      }
     }
   },
   "extras": [
@@ -5095,7 +4978,92 @@
       }
     ]
   ],
-  "externals": [],
+  "externals": [
+    {
+      "type": "SYMBOL",
+      "name": "SCOPE"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "DEPENDS"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "DECREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "INCREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "LIST"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "OPTION"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "DEFINED_AS"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WILDCARD"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WITH_PATT"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "UNDER_CONDITION"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WITH"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "WE_HAVE"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "MAP_EACH"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "TO"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "SUCH"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "ORDER_INCREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "ORDER_DECREASING"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "AND_THEN"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "XOR"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "OR_EMPTY"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "BUT_REPLACE"
+    }
+  ],
   "inline": [],
   "supertypes": [],
   "reserved": {}
