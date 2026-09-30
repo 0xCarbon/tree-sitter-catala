@@ -372,6 +372,14 @@ const definition = {
   externals: $ => scanner_tokens.map(t => $[t]),
   inline: inline,
   word: $ => $._LIDENT,
+  // The compiler's lexer lexes the duration units as keywords everywhere in
+  // code, so they are never identifiers ("input year content integer" is a
+  // syntax error). Parsers generated for ABI 15 (make abi15) enforce it; the
+  // committed ABI 14 parsers, which Emacs needs, ignore reserved words and
+  // lex a duration unit as an identifier where no keyword is expected.
+  reserved: {
+    global: $ => [$.YEAR, $.MONTH, $.DAY],
+  },
   extras: $ => [ /\s/, $.COMMENT, $.ATTRIBUTE ],
   precedences: $ => [[
     'keyword',

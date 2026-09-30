@@ -35,10 +35,36 @@ and the language's keyword table, `scanner_<lang>.h`, then checks with
 `check_scanner.sh` that the grammar's externals and the table agree with
 `scanner_tokens` and the `words(...)` tokens of `grammar.js`.
 
+## ABI 14 and ABI 15 parsers
+
+The committed parsers (`catala_<lang>`, `catala_code_<lang>`,
+`catala_expr_<lang>`) are generated for tree-sitter ABI 14, which Emacs
+requires. ABI 14 has no reserved words: a keyword is lexed as an
+identifier wherever the parser expects an identifier and not that keyword.
+
+The compiler lexes every keyword as a keyword, so the duration units
+(`year`, `month`, `day`; `an`, `mois`, `jour`; `rok`, `miesiąc`, `dzień`)
+are never identifiers: `input year content integer` is a syntax error.
+`grammar.js` declares them as reserved words (`reserved`), which only ABI
+15 parsers enforce. Generating for ABI 14 ignores them: the parse tables
+are the same as without them, and `src/parser.c` differs only by its
+unused `MAX_RESERVED_WORD_SET_SIZE`.
+
+`make abi15` generates ABI 15 parsers of every grammar in `build/abi15`
+(ignored by git), next to the committed ABI 14 ones; `make lib ABI=15
+OUTDIR=build/abi15/catala_<lang> TREESITTER_CATALA_LANG=<lang>` builds one
+of them as a native and a WebAssembly library.
+
 ## Tests
 
 `make test` runs `tree-sitter test` in every `catala_<lang>` directory
-that has a `test/corpus` directory.
+that has a `test/corpus` directory, on the committed ABI 14 parser, and
+skips the cases whose name ends with `(ABI 15)`. `make test-abi15` runs the
+same corpus on an ABI 15 parser generated in `build/abi15`, and skips the
+cases whose name ends with `(ABI 14)`: in `reserved.txt`, a duration unit
+used as an identifier parses with ABI 14 and is an error with ABI 15. Both
+rebuild the parser (`--rebuild`), because the tree-sitter CLI caches a
+grammar's library by name only.
 
 ## License
 

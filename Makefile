@@ -6,15 +6,22 @@ export TREESITTER_CATALA_VARIANT
 
 SUBDIR = $(TREESITTER_CATALA_VARIANT)_$(TREESITTER_CATALA_LANG)
 
+# The committed parsers, in $(SUBDIR), are generated for ABI 14, which Emacs
+# requires (< 15). `make abi15` generates ABI 15 parsers, which also enforce
+# the reserved words of grammar.js, in $(ABI15_DIR)/$(SUBDIR).
+ABI = 14
+ABI15_DIR = build/abi15
+OUTDIR = $(SUBDIR)
+
 LANGS = en fr pl
 
 VARIANTS = catala catala_code catala_expr
 
 COMBINATIONS = $(foreach V,$(VARIANTS),$(foreach L,$(LANGS),$V_$L))
 
-LIB = $(SUBDIR)/libtree-sitter-$(TREESITTER_CATALA_VARIANT)_$(TREESITTER_CATALA_LANG).so
+LIB = $(OUTDIR)/libtree-sitter-$(TREESITTER_CATALA_VARIANT)_$(TREESITTER_CATALA_LANG).so
 
-.PHONY: generate lib all test dist-clean ALWAYS
+.PHONY: generate lib all test abi15 test-abi15 dist-clean ALWAYS
 
 all: $(LANGS)
 
@@ -29,32 +36,60 @@ $(VARIANTS): Cargo.toml.in grammar.js ALWAYS
 lib: $(LIB)
 $(LIB): generate
 	@echo "Compiling $@ library"
-	@cd $(SUBDIR) && tree-sitter build && tree-sitter build --wasm
-	@cp -f $(SUBDIR)/parser.so $(@F)
+	@cd $(OUTDIR) && tree-sitter build && tree-sitter build --wasm
+	@cp -f $(OUTDIR)/parser.so $(@F)
 	# @gcc -shared -fPIC -fno-exceptions -g -O2 -I $(TREESITTER_CATALA_LANG)/src $(TREESITTER_CATALA_LANG)/src/parser.c -o $@
 
 # src/scanner.c is scanner.c with the language's keyword table,
 # scanner_<lang>.h, in place of its #include "scanner_lang.h", and entry points
 # named after the grammar
 generate: Cargo.toml.in grammar.js scanner.c scanner_$(TREESITTER_CATALA_LANG).h ALWAYS
-	@echo "Generating tree-sitter-$(TREESITTER_CATALA_VARIANT)-$(TREESITTER_CATALA_LANG)"
-	@mkdir -p $(SUBDIR)/src
-	@sed 's/$${TREESITTER_CATALA_VARIANT}/'$(TREESITTER_CATALA_VARIANT)'/g; s/$${TREESITTER_CATALA_LANG}/'$(TREESITTER_CATALA_LANG)'/g' $< > $(SUBDIR)/Cargo.toml
-	@cp grammar.js $(SUBDIR)
+	@echo "Generating tree-sitter-$(TREESITTER_CATALA_VARIANT)-$(TREESITTER_CATALA_LANG) (ABI $(ABI)) in $(OUTDIR)"
+	@mkdir -p $(OUTDIR)/src
+	@sed 's/$${TREESITTER_CATALA_VARIANT}/'$(TREESITTER_CATALA_VARIANT)'/g; s/$${TREESITTER_CATALA_LANG}/'$(TREESITTER_CATALA_LANG)'/g' $< > $(OUTDIR)/Cargo.toml
+	@cp grammar.js $(OUTDIR)
 	@sed -e '/^#include "scanner_lang.h"$$/{r scanner_$(TREESITTER_CATALA_LANG).h' -e 'd' -e '}' \
 	  -e 's/tree_sitter_catala_external_scanner_/tree_sitter_$(SUBDIR)_external_scanner_/' \
-	  scanner.c > $(SUBDIR)/src/scanner.c
-	@cd $(SUBDIR) && tree-sitter generate --abi=14 # emacs requires <15
-	@./check_scanner.sh $(TREESITTER_CATALA_LANG) $(SUBDIR)
+	  scanner.c > $(OUTDIR)/src/scanner.c
+	@cd $(OUTDIR) && tree-sitter generate --abi=$(ABI)
+	@./check_scanner.sh $(TREESITTER_CATALA_LANG) $(OUTDIR)
 
-# Runs the corpus tests (catala_<lang>/test/corpus) of every language that has one
+# ABI 15 parsers of every variant and language, outside the committed
+# directories
+abi15: ALWAYS
+	@for v in $(VARIANTS); do for l in $(LANGS); do \
+	  $(MAKE) --no-print-directory generate ABI=15 OUTDIR=$(ABI15_DIR)/$${v}_$$l \
+	    TREESITTER_CATALA_VARIANT=$$v TREESITTER_CATALA_LANG=$$l || exit 1; \
+	done; done
+
+# Runs the corpus tests (catala_<lang>/test/corpus) of every language that has
+# one, rebuilding the parser: the tree-sitter CLI caches the library of a
+# grammar by name only. The cases named "... (ABI 15)" need reserved words and
+# are skipped.
 test: ALWAYS
 	@for l in $(LANGS); do \
 	  if [ -d catala_$$l/test/corpus ]; then \
 	    echo "Testing catala_$$l"; \
-	    (cd catala_$$l && tree-sitter test) || exit 1; \
+	    (cd catala_$$l && tree-sitter test --rebuild --exclude ' \(ABI 15\)$$') \
+	      || exit 1; \
+	  fi; \
+	done
+
+# Runs the same corpus tests on ABI 15 parsers of catala_<lang>, generated in
+# $(ABI15_DIR), skipping the cases named "... (ABI 14)"
+test-abi15: ALWAYS
+	@for l in $(LANGS); do \
+	  if [ -d catala_$$l/test/corpus ]; then \
+	    d=$(ABI15_DIR)/catala_$$l; \
+	    $(MAKE) --no-print-directory generate ABI=15 OUTDIR=$$d \
+	      TREESITTER_CATALA_VARIANT=catala TREESITTER_CATALA_LANG=$$l || exit 1; \
+	    rm -rf $$d/test && mkdir -p $$d/test && cp -R catala_$$l/test/corpus $$d/test/; \
+	    printf '{"grammars":[{"name":"catala_%s","scope":"source.catala_%s","path":".","file-types":["catala_%s"]}],"metadata":{"version":"1.0.0"}}\n' \
+	      $$l $$l $$l > $$d/tree-sitter.json; \
+	    echo "Testing catala_$$l (ABI 15)"; \
+	    (cd $$d && tree-sitter test --rebuild --exclude ' \(ABI 14\)$$') || exit 1; \
 	  fi; \
 	done
 
 dist-clean:
-	rm -rf $(LANGS) $(LIBS) $(VARIANTS)_??
+	rm -rf $(LANGS) $(LIBS) $(VARIANTS)_?? $(ABI15_DIR)

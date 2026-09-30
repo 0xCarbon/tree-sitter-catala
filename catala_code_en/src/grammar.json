@@ -5087,5 +5087,20 @@
   ],
   "inline": [],
   "supertypes": [],
-  "reserved": {}
+  "reserved": {
+    "global": [
+      {
+        "type": "SYMBOL",
+        "name": "YEAR"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "MONTH"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DAY"
+      }
+    ]
+  }
 }
