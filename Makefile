@@ -21,7 +21,7 @@ COMBINATIONS = $(foreach V,$(VARIANTS),$(foreach L,$(LANGS),$V_$L))
 
 LIB = $(OUTDIR)/libtree-sitter-$(TREESITTER_CATALA_VARIANT)_$(TREESITTER_CATALA_LANG).so
 
-.PHONY: generate lib all test abi15 test-abi15 check-precedence dist-clean ALWAYS
+.PHONY: generate lib all test abi15 test-abi15 check-precedence check-reserved dist-clean ALWAYS
 
 all: $(LANGS)
 
@@ -101,6 +101,15 @@ check-precedence: ALWAYS
 	  CATALA=$(CATALA) ./test/precedence/compare.py catala_expr_$$l test/precedence/$$l.json \
 	    || exit 1; \
 	done
+
+# Checks that the reserved words of grammar.js are the words that the compiler
+# $(CATALA) never accepts as identifiers, taking the candidate words from the
+# lexer tables of the compiler's checkout $(CATALA_SRC), and that the ABI 15
+# parsers reject exactly those words (reserved_words.py). `reserved_words.py
+# update` regenerates the table.
+check-reserved: abi15
+	./reserved_words.py check --catala $(CATALA) --src $(CATALA_SRC) \
+	  --abi15 $(ABI15_DIR) --langs $(LANGS)
 
 dist-clean:
 	rm -rf $(LANGS) $(LIBS) $(VARIANTS)_?? $(ABI15_DIR)

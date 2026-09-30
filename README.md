@@ -42,13 +42,23 @@ The committed parsers (`catala_<lang>`, `catala_code_<lang>`,
 requires. ABI 14 has no reserved words: a keyword is lexed as an
 identifier wherever the parser expects an identifier and not that keyword.
 
-The compiler lexes every keyword as a keyword, so the duration units
-(`year`, `month`, `day`; `an`, `mois`, `jour`; `rok`, `miesiąc`, `dzień`)
-are never identifiers: `input year content integer` is a syntax error.
-`grammar.js` declares them as reserved words (`reserved`), which only ABI
-15 parsers enforce. Generating for ABI 14 ignores them: the parse tables
-are the same as without them, and `src/parser.c` differs only by its
-unused `MAX_RESERVED_WORD_SET_SIZE`.
+The compiler never accepts a keyword as an identifier, wherever it
+stands: `input year content integer` is a syntax error. Nor does it accept
+a built-in function name such as `decimal` or `round`: every binding of
+one is a "Reserved builtin name" error. `grammar.js` declares these words
+as reserved words (`reserved`), which only ABI 15 parsers enforce; ABI 14
+parsers lex such a word as an identifier where no keyword is expected.
+
+The table `reserved_words` of `grammar.js` is derived from the compiler by
+`reserved_words.py`: the candidates are the words of the keyword strings
+of the compiler's lexer tables (`compiler/surface/lexer_<lang>.cppo.ml`),
+and a candidate is reserved when the compiler rejects it as the name of a
+declaration. The first word of a multi-word keyword, such as `depends` in
+`depends on`, is thus reserved only if it is a keyword on its own.
+`make check-reserved CATALA=<catala binary> CATALA_SRC=<compiler checkout>`
+checks that the table equals the compiler's set, and that the ABI 15
+parsers reject exactly those words. `catala_expr_<lang>` has no token for
+the keywords of declarations and rules, and reserves only the others.
 
 `make abi15` generates ABI 15 parsers of every grammar in `build/abi15`
 (ignored by git), next to the committed ABI 14 ones; `make lib ABI=15

@@ -150,3 +150,114 @@ zakres A:
       (DAY))
     (end_block_fence
       (END_CODE))))
+
+============================================================
+Keyword and built-in name as identifiers (ABI 14)
+============================================================
+
+```catala
+deklaracja maksimum typu całkowita wynosi 1
+deklaracja zaokrąglony typu całkowita wynosi 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (INT_LITERAL))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (INT_LITERAL))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+Keyword and built-in name as identifiers (ABI 15)
+============================================================
+
+```catala
+deklaracja maksimum typu całkowita wynosi 1
+deklaracja zaokrąglony typu całkowita wynosi 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (ERROR
+      (DECLARATION)
+      (MAXIMUM)
+      (CONTENT)
+      (INTEGER)
+      (DEFINED_AS)
+      (INT_LITERAL)
+      (DECLARATION)
+      (Round)
+      (CONTENT)
+      (INTEGER)
+      (DEFINED_AS)
+      (INT_LITERAL))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================
+First words of multi-word keywords are not reserved
+============================================================
+
+```catala
+deklaracja zależy typu całkowita wynosi 1
+deklaracja każdy typu całkowita wynosi zależy
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (literal
+          (INT_LITERAL))))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (end_block_fence
+      (END_CODE))))

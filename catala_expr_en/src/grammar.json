@@ -5149,7 +5149,111 @@
     "global": [
       {
         "type": "SYMBOL",
-        "name": "YEAR"
+        "name": "ALL"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "AMONG"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "AND"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "WILDCARD"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "ASSERTION"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "COMBINE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "CONTAINS"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "CONTENT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DATE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DAY"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DECIMAL"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "ELSE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DEFINED_AS"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "EXISTS"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "FALSE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "FOR"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "IF"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "IMPOSSIBLE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "IN"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "INITIALLY"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "INTEGER"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "IS"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "LET"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "MATCH"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "MAXIMUM"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "MINIMUM"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "MONEY"
       },
       {
         "type": "SYMBOL",
@@ -5157,7 +5261,71 @@
       },
       {
         "type": "SYMBOL",
-        "name": "DAY"
+        "name": "NOT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "CARDINAL"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "OF"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "OR"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "OUTPUT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "Round"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "SORT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "STATE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "SUCH"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "THAT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "THEN"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "TO"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "TRUE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "TYPE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "WITH"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "XOR"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "YEAR"
       }
     ]
   }

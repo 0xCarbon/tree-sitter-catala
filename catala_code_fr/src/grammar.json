@@ -5128,7 +5128,139 @@
     "global": [
       {
         "type": "SYMBOL",
+        "name": "THEN"
+      },
+      {
+        "type": "SYMBOL",
         "name": "YEAR"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "MONEY"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "Round"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "ASSERTION"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "WITH"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "COMBINE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "CONDITION"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "CONSEQUENCE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "CONTENT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "CONTEXT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "CONTAINS"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "IN"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DATE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "OF"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DATA"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DECIMAL"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DECLARATION"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DEFINITION"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "TO"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "INTEGER"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "INPUT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "IS"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "AND"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "EXCEPTION"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "EXISTS"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "FALSE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "IMPOSSIBLE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DECREASING"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "INITIALLY"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "INTERNAL"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "DAY"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "MAXIMUM"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "MINIMUM"
       },
       {
         "type": "SYMBOL",
@@ -5136,7 +5268,99 @@
       },
       {
         "type": "SYMBOL",
-        "name": "DAY"
+        "name": "CARDINAL"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "NOT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "OR"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "AMONG"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "FOR"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "AND_THEN"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "THAT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "FILLED"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "RULE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "OUTPUT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "MATCH"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "IF"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "ELSE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "LET"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "STRUCT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "INCREASING"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "SUCH"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "ALL"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "SORT"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "TYPE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "TRUE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "ENUM"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "STATE"
+      },
+      {
+        "type": "SYMBOL",
+        "name": "LABEL"
       }
     ]
   }
