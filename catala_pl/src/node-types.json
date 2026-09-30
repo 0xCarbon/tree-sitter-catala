@@ -12,22 +12,12 @@
     "fields": {}
   },
   {
-    "type": "CONTENT",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "EXTERNAL",
     "named": true,
     "fields": {}
   },
   {
     "type": "MODULE_EXTERNAL",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "TYPE",
     "named": true,
     "fields": {}
   },
@@ -2581,10 +2571,6 @@
         },
         {
           "type": "LIST",
-          "named": true
-        },
-        {
-          "type": "OF",
           "named": true
         },
         {
@@ -8399,10 +8385,6 @@
           "named": true
         },
         {
-          "type": "OF",
-          "named": true
-        },
-        {
           "type": "OPTION",
           "named": true
         },
@@ -8605,6 +8587,10 @@
   },
   {
     "type": "CONTAINS",
+    "named": true
+  },
+  {
+    "type": "CONTENT",
     "named": true
   },
   {
@@ -8972,6 +8958,10 @@
     "named": true
   },
   {
+    "type": "TYPE",
+    "named": true
+  },
+  {
     "type": "UNDER_CONDITION",
     "named": true
   },
@@ -9001,10 +8991,6 @@
   },
   {
     "type": "external",
-    "named": false
-  },
-  {
-    "type": "typu",
     "named": false
   },
   {
