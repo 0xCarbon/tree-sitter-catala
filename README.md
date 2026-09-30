@@ -66,6 +66,14 @@ used as an identifier parses with ABI 14 and is an error with ABI 15. Both
 rebuild the parser (`--rebuild`), because the tree-sitter CLI caches a
 grammar's library by name only.
 
+`make check-precedence CATALA=<catala binary>` checks that the
+`catala_expr_<lang>` parsers group operators as the compiler does. For each
+expression of `test/precedence/<lang>.json`, such as `maximum of l + 1`, it
+finds the compiler's parse among the two possible parenthesizations by
+comparing their `catala dcalc` outputs, and tree-sitter's by comparing their
+trees. The `precedence.txt` corpus of each language holds the same
+expressions, named after the compiler's parse.
+
 ## License
 
 The files contained in this repository are released under the [Apache

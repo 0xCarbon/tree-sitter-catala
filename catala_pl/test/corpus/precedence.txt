@@ -1,0 +1,420 @@
+============================================================================
+Operator precedence (maksimum +): (maksimum z l) + 1
+============================================================================
+
+```catala
+deklaracja r typu całkowita wynosi maksimum z l + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_extremum
+            (MAXIMUM)
+            (OF)
+            (e_variable
+              (variable)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (maksimum > lub): ((maksimum z l) > 0) lub b
+============================================================================
+
+```catala
+deklaracja r typu zerojedynkowy wynosi maksimum z l > 0 lub b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_extremum
+              (MAXIMUM)
+              (OF)
+              (e_variable
+                (variable)))
+            (GREATER)
+            (literal
+              (INT_LITERAL)))
+          (OR)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (minimum > i): ((minimum z l) > 0) i b
+============================================================================
+
+```catala
+deklaracja r typu zerojedynkowy wynosi minimum z l > 0 i b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_extremum
+              (MINIMUM)
+              (OF)
+              (e_variable
+                (variable)))
+            (GREATER)
+            (literal
+              (INT_LITERAL)))
+          (AND)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (maksimum domyślne +): (maksimum z l lub jeżeli lista pusta wtedy 0) + 1
+============================================================================
+
+```catala
+deklaracja r typu całkowita wynosi maksimum z l lub jeżeli lista pusta wtedy 0 + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_extremum
+            (MAXIMUM)
+            (OF)
+            (e_variable
+              (variable))
+            (OR_EMPTY)
+            (THEN)
+            (literal
+              (INT_LITERAL)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (sort kryterium = lub): ((sort wszystkie y wśród l by increasing order z y) = l) lub b
+============================================================================
+
+```catala
+deklaracja r typu zerojedynkowy wynosi sort wszystkie y wśród l by increasing order z y = l lub b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_sort
+              (SORT)
+              (ALL)
+              (binder
+                (variable))
+              (AMONG)
+              (e_variable
+                (variable))
+              (ORDER_INCREASING)
+              (OF)
+              (e_variable
+                (variable)))
+            (EQUAL)
+            (e_variable
+              (variable)))
+          (OR)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (sort kryteria ++): (sort wszystkie y wśród l by decreasing order z y and then - y) ++ l
+============================================================================
+
+```catala
+deklaracja r typu lista całkowita wynosi sort wszystkie y wśród l by decreasing order z y and then - y ++ l
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_sort
+            (SORT)
+            (ALL)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (ORDER_DECREASING)
+            (OF)
+            (e_variable
+              (variable))
+            (AND_THEN)
+            (e_unop
+              (MINUS)
+              (e_variable
+                (variable))))
+          (PLUSPLUS)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (wyszukiwanie >): typu z x wśród l takie że to (x > n)
+============================================================================
+
+```catala
+deklaracja r typu opcjonalny całkowita wynosi typu z x wśród l takie że to x > n
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (OPTION)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_find
+          (CONTENT)
+          (OF)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (SUCH)
+          (THAT)
+          (e_binop
+            (e_variable
+              (variable))
+            (GREATER)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (wyszukiwanie domyślne +): (typu z x wśród l takie że to x jest maksimum lub jeżeli lista pusta wtedy 0) + 1
+============================================================================
+
+```catala
+deklaracja r typu całkowita wynosi typu z x wśród l takie że to x jest maksimum lub jeżeli lista pusta wtedy 0 + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_find
+            (CONTENT)
+            (OF)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (SUCH)
+            (THAT)
+            (e_variable
+              (variable))
+            (IS)
+            (MAXIMUM)
+            (OR_EMPTY)
+            (THEN)
+            (literal
+              (INT_LITERAL)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (istnieje lub): istnieje x wśród l takie że to (x > 0 lub b)
+============================================================================
+
+```catala
+deklaracja r typu zerojedynkowy wynosi istnieje x wśród l takie że to x > 0 lub b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_coll_exists
+          (EXISTS)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (SUCH)
+          (THAT)
+          (e_binop
+            (e_binop
+              (e_variable
+                (variable))
+              (GREATER)
+              (literal
+                (INT_LITERAL)))
+            (OR)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (suma +): (suma całkowita z l) + 1
+============================================================================
+
+```catala
+deklaracja r typu całkowita wynosi suma całkowita z l + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_sum
+            (SUM)
+            (primitive_typ
+              (INTEGER))
+            (OF)
+            (e_variable
+              (variable)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))

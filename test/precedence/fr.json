@@ -1,0 +1,77 @@
+{
+ "lang": "fr",
+ "prelude": "déclaration l contenu liste de entier égal à [1; 2; 3]\ndéclaration n contenu entier égal à 2\ndéclaration b contenu booléen égal à vrai\n",
+ "decl": "déclaration r contenu {ty} égal à {expr}",
+ "cases": [
+  [
+   "maximum +",
+   "entier",
+   "maximum de l + 1",
+   "(maximum de l) + 1",
+   "maximum de (l + 1)"
+  ],
+  [
+   "maximum > et",
+   "booléen",
+   "maximum de l > 0 et b",
+   "((maximum de l) > 0) et b",
+   "maximum de (l > 0 et b)"
+  ],
+  [
+   "minimum > ou",
+   "booléen",
+   "minimum de l > 0 ou b",
+   "((minimum de l) > 0) ou b",
+   "minimum de (l > 0 ou b)"
+  ],
+  [
+   "maximum défaut +",
+   "entier",
+   "maximum de l ou si liste vide alors 0 + 1",
+   "(maximum de l ou si liste vide alors 0) + 1",
+   "maximum de l ou si liste vide alors (0 + 1)"
+  ],
+  [
+   "tri critère = et",
+   "booléen",
+   "trie tout y parmi l par ordre croissant de y = l et b",
+   "((trie tout y parmi l par ordre croissant de y) = l) et b",
+   "trie tout y parmi l par ordre croissant de (y = l et b)"
+  ],
+  [
+   "tri critères ++",
+   "liste de entier",
+   "trie tout y parmi l par ordre décroissant de y puis - y ++ l",
+   "(trie tout y parmi l par ordre décroissant de y puis - y) ++ l",
+   "trie tout y parmi l par ordre décroissant de y puis (- y ++ l)"
+  ],
+  [
+   "recherche >",
+   "optionnel de entier",
+   "contenu de x parmi l tel que x > n",
+   "(contenu de x parmi l tel que x) > n",
+   "contenu de x parmi l tel que (x > n)"
+  ],
+  [
+   "recherche défaut +",
+   "entier",
+   "contenu de x parmi l tel que x est maximum ou si liste vide alors 0 + 1",
+   "(contenu de x parmi l tel que x est maximum ou si liste vide alors 0) + 1",
+   "contenu de x parmi l tel que x est maximum ou si liste vide alors (0 + 1)"
+  ],
+  [
+   "existe et",
+   "booléen",
+   "existe x parmi l tel que x > 0 et b",
+   "(existe x parmi l tel que x > 0) et b",
+   "existe x parmi l tel que (x > 0 et b)"
+  ],
+  [
+   "somme +",
+   "entier",
+   "somme entier de l + 1",
+   "(somme entier de l) + 1",
+   "somme entier de (l + 1)"
+  ]
+ ]
+}

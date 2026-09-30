@@ -1,0 +1,77 @@
+{
+ "lang": "pl",
+ "prelude": "deklaracja l typu lista całkowita wynosi [1; 2; 3]\ndeklaracja n typu całkowita wynosi 2\ndeklaracja b typu zerojedynkowy wynosi prawda\n",
+ "decl": "deklaracja r typu {ty} wynosi {expr}",
+ "cases": [
+  [
+   "maksimum +",
+   "całkowita",
+   "maksimum z l + 1",
+   "(maksimum z l) + 1",
+   "maksimum z (l + 1)"
+  ],
+  [
+   "maksimum > lub",
+   "zerojedynkowy",
+   "maksimum z l > 0 lub b",
+   "((maksimum z l) > 0) lub b",
+   "maksimum z (l > 0 lub b)"
+  ],
+  [
+   "minimum > i",
+   "zerojedynkowy",
+   "minimum z l > 0 i b",
+   "((minimum z l) > 0) i b",
+   "minimum z (l > 0 i b)"
+  ],
+  [
+   "maksimum domyślne +",
+   "całkowita",
+   "maksimum z l lub jeżeli lista pusta wtedy 0 + 1",
+   "(maksimum z l lub jeżeli lista pusta wtedy 0) + 1",
+   "maksimum z l lub jeżeli lista pusta wtedy (0 + 1)"
+  ],
+  [
+   "sort kryterium = lub",
+   "zerojedynkowy",
+   "sort wszystkie y wśród l by increasing order z y = l lub b",
+   "((sort wszystkie y wśród l by increasing order z y) = l) lub b",
+   "sort wszystkie y wśród l by increasing order z (y = l lub b)"
+  ],
+  [
+   "sort kryteria ++",
+   "lista całkowita",
+   "sort wszystkie y wśród l by decreasing order z y and then - y ++ l",
+   "(sort wszystkie y wśród l by decreasing order z y and then - y) ++ l",
+   "sort wszystkie y wśród l by decreasing order z y and then (- y ++ l)"
+  ],
+  [
+   "wyszukiwanie >",
+   "opcjonalny całkowita",
+   "typu z x wśród l takie że to x > n",
+   "(typu z x wśród l takie że to x) > n",
+   "typu z x wśród l takie że to (x > n)"
+  ],
+  [
+   "wyszukiwanie domyślne +",
+   "całkowita",
+   "typu z x wśród l takie że to x jest maksimum lub jeżeli lista pusta wtedy 0 + 1",
+   "(typu z x wśród l takie że to x jest maksimum lub jeżeli lista pusta wtedy 0) + 1",
+   "typu z x wśród l takie że to x jest maksimum lub jeżeli lista pusta wtedy (0 + 1)"
+  ],
+  [
+   "istnieje lub",
+   "zerojedynkowy",
+   "istnieje x wśród l takie że to x > 0 lub b",
+   "(istnieje x wśród l takie że to x > 0) lub b",
+   "istnieje x wśród l takie że to (x > 0 lub b)"
+  ],
+  [
+   "suma +",
+   "całkowita",
+   "suma całkowita z l + 1",
+   "(suma całkowita z l) + 1",
+   "suma całkowita z (l + 1)"
+  ]
+ ]
+}

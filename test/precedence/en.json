@@ -1,0 +1,217 @@
+{
+ "lang": "en",
+ "prelude": "declaration enumeration E:\n  -- A\n  -- B content integer\ndeclaration f content integer depends on x content integer equals x + 1\ndeclaration l content list of integer equals [1; 2; 3]\ndeclaration n content integer equals 2\ndeclaration b content boolean equals true\ndeclaration e content E equals B content 1\n",
+ "decl": "declaration r content {ty} equals {expr}",
+ "cases": [
+  [
+   "apply +",
+   "integer",
+   "f of n + 1",
+   "(f of n) + 1",
+   "f of (n + 1)"
+  ],
+  [
+   "apply >",
+   "boolean",
+   "f of n > 0",
+   "(f of n) > 0",
+   "f of (n > 0)"
+  ],
+  [
+   "contains and",
+   "boolean",
+   "l contains n and b",
+   "(l contains n) and b",
+   "l contains (n and b)"
+  ],
+  [
+   "contains +",
+   "boolean",
+   "l contains n + 1",
+   "(l contains n) + 1",
+   "l contains (n + 1)"
+  ],
+  [
+   "sum +",
+   "integer",
+   "sum integer of l + 1",
+   "(sum integer of l) + 1",
+   "sum integer of (l + 1)"
+  ],
+  [
+   "sum > and",
+   "boolean",
+   "sum integer of l > 0 and b",
+   "((sum integer of l) > 0) and b",
+   "sum integer of (l > 0 and b)"
+  ],
+  [
+   "maximum +",
+   "integer",
+   "maximum of l + 1",
+   "(maximum of l) + 1",
+   "maximum of (l + 1)"
+  ],
+  [
+   "maximum *",
+   "integer",
+   "maximum of l * 2",
+   "(maximum of l) * 2",
+   "maximum of (l * 2)"
+  ],
+  [
+   "maximum > and",
+   "boolean",
+   "maximum of l > 0 and b",
+   "((maximum of l) > 0) and b",
+   "maximum of (l > 0 and b)"
+  ],
+  [
+   "minimum > or",
+   "boolean",
+   "minimum of l > 0 or b",
+   "((minimum of l) > 0) or b",
+   "minimum of (l > 0 or b)"
+  ],
+  [
+   "maximum default +",
+   "integer",
+   "maximum of l or if list empty then 0 + 1",
+   "(maximum of l or if list empty then 0) + 1",
+   "maximum of l or if list empty then (0 + 1)"
+  ],
+  [
+   "maximum default > and",
+   "boolean",
+   "maximum of l or if list empty then 0 > n and b",
+   "((maximum of l or if list empty then 0) > n) and b",
+   "maximum of l or if list empty then (0 > n and b)"
+  ],
+  [
+   "sort criterion ++",
+   "list of integer",
+   "sort all y among l in increasing order of y ++ l",
+   "(sort all y among l in increasing order of y) ++ l",
+   "sort all y among l in increasing order of (y ++ l)"
+  ],
+  [
+   "sort criterion = and",
+   "boolean",
+   "sort all y among l in decreasing order of y = l and b",
+   "((sort all y among l in decreasing order of y) = l) and b",
+   "sort all y among l in decreasing order of (y = l and b)"
+  ],
+  [
+   "sort criteria ++",
+   "list of integer",
+   "sort all y among l in increasing order of y and then - y ++ l",
+   "(sort all y among l in increasing order of y and then - y) ++ l",
+   "sort all y among l in increasing order of y and then (- y ++ l)"
+  ],
+  [
+   "find >",
+   "optional of integer",
+   "content of x among l such that x > n",
+   "(content of x among l such that x) > n",
+   "content of x among l such that (x > n)"
+  ],
+  [
+   "find max default +",
+   "integer",
+   "content of x among l such that x is maximum or if list empty then 0 + 1",
+   "(content of x among l such that x is maximum or if list empty then 0) + 1",
+   "content of x among l such that x is maximum or if list empty then (0 + 1)"
+  ],
+  [
+   "unop - +",
+   "integer",
+   "- n + 1",
+   "(- n) + 1",
+   "- (n + 1)"
+  ],
+  [
+   "unop not and",
+   "boolean",
+   "not b and b",
+   "(not b) and b",
+   "not (b and b)"
+  ],
+  [
+   "map >",
+   "list of boolean",
+   "map each x among l to x > 0 and b",
+   "(map each x among l to x > 0) and b",
+   "map each x among l to (x > 0 and b)"
+  ],
+  [
+   "fold +",
+   "integer",
+   "combine all x among l in acc initially 0 with acc + x",
+   "(combine all x among l in acc initially 0 with acc) + n",
+   "combine all x among l in acc initially 0 with (acc + x)"
+  ],
+  [
+   "filter and",
+   "list of integer",
+   "list of x among l such that x > 0 and b",
+   "(list of x among l such that x > 0) and b",
+   "list of x among l such that (x > 0 and b)"
+  ],
+  [
+   "filter map +",
+   "list of integer",
+   "map each x among l such that x > 0 to x + 1",
+   "(map each x among l such that x > 0 to x) + 1",
+   "map each x among l such that x > 0 to (x + 1)"
+  ],
+  [
+   "exists and",
+   "boolean",
+   "exists x among l such that x > 0 and b",
+   "(exists x among l such that x > 0) and b",
+   "exists x among l such that (x > 0 and b)"
+  ],
+  [
+   "for all and",
+   "boolean",
+   "for all x among l we have x > 0 and b",
+   "(for all x among l we have x > 0) and b",
+   "for all x among l we have (x > 0 and b)"
+  ],
+  [
+   "if >",
+   "boolean",
+   "if b then n else n > 0",
+   "(if b then n else n) > 0",
+   "if b then n else (n > 0)"
+  ],
+  [
+   "let +",
+   "integer",
+   "let y equals n in y + 1",
+   "(let y equals n in y) + n",
+   "let y equals n in (y + 1)"
+  ],
+  [
+   "match +",
+   "integer",
+   "match e with pattern -- A: n -- B content y: y + 1",
+   "(match e with pattern -- A: n -- B content y: y) + 1",
+   "match e with pattern -- A: n -- B content y: (y + 1)"
+  ],
+  [
+   "enum content +",
+   "E",
+   "B content n + 1",
+   "(B content n) + 1",
+   "B content (n + 1)"
+  ],
+  [
+   "find max default and",
+   "boolean",
+   "content of x among l such that x is minimum or if list empty then 0 > n and b",
+   "((content of x among l such that x is minimum or if list empty then 0) > n) and b",
+   "content of x among l such that x is minimum or if list empty then (0 > n and b)"
+  ]
+ ]
+}

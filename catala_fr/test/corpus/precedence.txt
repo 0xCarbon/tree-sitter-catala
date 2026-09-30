@@ -1,0 +1,420 @@
+============================================================================
+Operator precedence (maximum +): (maximum de l) + 1
+============================================================================
+
+```catala
+déclaration r contenu entier égal à maximum de l + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_extremum
+            (MAXIMUM)
+            (OF)
+            (e_variable
+              (variable)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (maximum > et): ((maximum de l) > 0) et b
+============================================================================
+
+```catala
+déclaration r contenu booléen égal à maximum de l > 0 et b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_extremum
+              (MAXIMUM)
+              (OF)
+              (e_variable
+                (variable)))
+            (GREATER)
+            (literal
+              (INT_LITERAL)))
+          (AND)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (minimum > ou): ((minimum de l) > 0) ou b
+============================================================================
+
+```catala
+déclaration r contenu booléen égal à minimum de l > 0 ou b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_extremum
+              (MINIMUM)
+              (OF)
+              (e_variable
+                (variable)))
+            (GREATER)
+            (literal
+              (INT_LITERAL)))
+          (OR)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (maximum défaut +): (maximum de l ou si liste vide alors 0) + 1
+============================================================================
+
+```catala
+déclaration r contenu entier égal à maximum de l ou si liste vide alors 0 + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_extremum
+            (MAXIMUM)
+            (OF)
+            (e_variable
+              (variable))
+            (OR_EMPTY)
+            (THEN)
+            (literal
+              (INT_LITERAL)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (tri critère = et): ((trie tout y parmi l par ordre croissant de y) = l) et b
+============================================================================
+
+```catala
+déclaration r contenu booléen égal à trie tout y parmi l par ordre croissant de y = l et b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_sort
+              (SORT)
+              (ALL)
+              (binder
+                (variable))
+              (AMONG)
+              (e_variable
+                (variable))
+              (ORDER_INCREASING)
+              (OF)
+              (e_variable
+                (variable)))
+            (EQUAL)
+            (e_variable
+              (variable)))
+          (AND)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (tri critères ++): (trie tout y parmi l par ordre décroissant de y puis - y) ++ l
+============================================================================
+
+```catala
+déclaration r contenu liste de entier égal à trie tout y parmi l par ordre décroissant de y puis - y ++ l
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_sort
+            (SORT)
+            (ALL)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (ORDER_DECREASING)
+            (OF)
+            (e_variable
+              (variable))
+            (AND_THEN)
+            (e_unop
+              (MINUS)
+              (e_variable
+                (variable))))
+          (PLUSPLUS)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (recherche >): contenu de x parmi l tel que (x > n)
+============================================================================
+
+```catala
+déclaration r contenu optionnel de entier égal à contenu de x parmi l tel que x > n
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (OPTION)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_find
+          (CONTENT)
+          (OF)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (SUCH)
+          (THAT)
+          (e_binop
+            (e_variable
+              (variable))
+            (GREATER)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (recherche défaut +): (contenu de x parmi l tel que x est maximum ou si liste vide alors 0) + 1
+============================================================================
+
+```catala
+déclaration r contenu entier égal à contenu de x parmi l tel que x est maximum ou si liste vide alors 0 + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_find
+            (CONTENT)
+            (OF)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (SUCH)
+            (THAT)
+            (e_variable
+              (variable))
+            (IS)
+            (MAXIMUM)
+            (OR_EMPTY)
+            (THEN)
+            (literal
+              (INT_LITERAL)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (existe et): existe x parmi l tel que (x > 0 et b)
+============================================================================
+
+```catala
+déclaration r contenu booléen égal à existe x parmi l tel que x > 0 et b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_coll_exists
+          (EXISTS)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (SUCH)
+          (THAT)
+          (e_binop
+            (e_binop
+              (e_variable
+                (variable))
+              (GREATER)
+              (literal
+                (INT_LITERAL)))
+            (AND)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (somme +): (somme entier de l) + 1
+============================================================================
+
+```catala
+déclaration r contenu entier égal à somme entier de l + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_sum
+            (SUM)
+            (primitive_typ
+              (INTEGER))
+            (OF)
+            (e_variable
+              (variable)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))

@@ -1,0 +1,1255 @@
+============================================================================
+Operator precedence (apply +): (f of n) + 1
+============================================================================
+
+```catala
+declaration r content integer equals f of n + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_apply
+            (e_variable
+              (variable))
+            (OF)
+            (fun_arguments
+              (fun_argument
+                (e_variable
+                  (variable)))))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (apply >): (f of n) > 0
+============================================================================
+
+```catala
+declaration r content boolean equals f of n > 0
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_apply
+            (e_variable
+              (variable))
+            (OF)
+            (fun_arguments
+              (fun_argument
+                (e_variable
+                  (variable)))))
+          (GREATER)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (contains and): (l contains n) and b
+============================================================================
+
+```catala
+declaration r content boolean equals l contains n and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_contains
+            (e_variable
+              (variable))
+            (CONTAINS)
+            (e_variable
+              (variable)))
+          (AND)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (contains +): (l contains n) + 1
+============================================================================
+
+```catala
+declaration r content boolean equals l contains n + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_contains
+            (e_variable
+              (variable))
+            (CONTAINS)
+            (e_variable
+              (variable)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (sum +): (sum integer of l) + 1
+============================================================================
+
+```catala
+declaration r content integer equals sum integer of l + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_sum
+            (SUM)
+            (primitive_typ
+              (INTEGER))
+            (OF)
+            (e_variable
+              (variable)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (sum > and): ((sum integer of l) > 0) and b
+============================================================================
+
+```catala
+declaration r content boolean equals sum integer of l > 0 and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_sum
+              (SUM)
+              (primitive_typ
+                (INTEGER))
+              (OF)
+              (e_variable
+                (variable)))
+            (GREATER)
+            (literal
+              (INT_LITERAL)))
+          (AND)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (maximum +): (maximum of l) + 1
+============================================================================
+
+```catala
+declaration r content integer equals maximum of l + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_extremum
+            (MAXIMUM)
+            (OF)
+            (e_variable
+              (variable)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (maximum *): (maximum of l) * 2
+============================================================================
+
+```catala
+declaration r content integer equals maximum of l * 2
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_extremum
+            (MAXIMUM)
+            (OF)
+            (e_variable
+              (variable)))
+          (MULT)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (maximum > and): ((maximum of l) > 0) and b
+============================================================================
+
+```catala
+declaration r content boolean equals maximum of l > 0 and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_extremum
+              (MAXIMUM)
+              (OF)
+              (e_variable
+                (variable)))
+            (GREATER)
+            (literal
+              (INT_LITERAL)))
+          (AND)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (minimum > or): ((minimum of l) > 0) or b
+============================================================================
+
+```catala
+declaration r content boolean equals minimum of l > 0 or b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_extremum
+              (MINIMUM)
+              (OF)
+              (e_variable
+                (variable)))
+            (GREATER)
+            (literal
+              (INT_LITERAL)))
+          (OR)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (maximum default +): (maximum of l or if list empty then 0) + 1
+============================================================================
+
+```catala
+declaration r content integer equals maximum of l or if list empty then 0 + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_extremum
+            (MAXIMUM)
+            (OF)
+            (e_variable
+              (variable))
+            (OR_EMPTY)
+            (THEN)
+            (literal
+              (INT_LITERAL)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (maximum default > and): ((maximum of l or if list empty then 0) > n) and b
+============================================================================
+
+```catala
+declaration r content boolean equals maximum of l or if list empty then 0 > n and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_extremum
+              (MAXIMUM)
+              (OF)
+              (e_variable
+                (variable))
+              (OR_EMPTY)
+              (THEN)
+              (literal
+                (INT_LITERAL)))
+            (GREATER)
+            (e_variable
+              (variable)))
+          (AND)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (sort criterion ++): (sort all y among l in increasing order of y) ++ l
+============================================================================
+
+```catala
+declaration r content list of integer equals sort all y among l in increasing order of y ++ l
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_sort
+            (SORT)
+            (ALL)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (ORDER_INCREASING)
+            (OF)
+            (e_variable
+              (variable)))
+          (PLUSPLUS)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (sort criterion = and): ((sort all y among l in decreasing order of y) = l) and b
+============================================================================
+
+```catala
+declaration r content boolean equals sort all y among l in decreasing order of y = l and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_sort
+              (SORT)
+              (ALL)
+              (binder
+                (variable))
+              (AMONG)
+              (e_variable
+                (variable))
+              (ORDER_DECREASING)
+              (OF)
+              (e_variable
+                (variable)))
+            (EQUAL)
+            (e_variable
+              (variable)))
+          (AND)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (sort criteria ++): (sort all y among l in increasing order of y and then - y) ++ l
+============================================================================
+
+```catala
+declaration r content list of integer equals sort all y among l in increasing order of y and then - y ++ l
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_sort
+            (SORT)
+            (ALL)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (ORDER_INCREASING)
+            (OF)
+            (e_variable
+              (variable))
+            (AND_THEN)
+            (e_unop
+              (MINUS)
+              (e_variable
+                (variable))))
+          (PLUSPLUS)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (find >): content of x among l such that (x > n)
+============================================================================
+
+```catala
+declaration r content optional of integer equals content of x among l such that x > n
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (OPTION)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_find
+          (CONTENT)
+          (OF)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (SUCH)
+          (THAT)
+          (e_binop
+            (e_variable
+              (variable))
+            (GREATER)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (find max default +): (content of x among l such that x is maximum or if list empty then 0) + 1
+============================================================================
+
+```catala
+declaration r content integer equals content of x among l such that x is maximum or if list empty then 0 + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_coll_find
+            (CONTENT)
+            (OF)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (SUCH)
+            (THAT)
+            (e_variable
+              (variable))
+            (IS)
+            (MAXIMUM)
+            (OR_EMPTY)
+            (THEN)
+            (literal
+              (INT_LITERAL)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (unop - +): (- n) + 1
+============================================================================
+
+```catala
+declaration r content integer equals - n + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_unop
+            (MINUS)
+            (e_variable
+              (variable)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (unop not and): (not b) and b
+============================================================================
+
+```catala
+declaration r content boolean equals not b and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_unop
+            (NOT)
+            (e_variable
+              (variable)))
+          (AND)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (map >): map each x among l to (x > 0 and b)
+============================================================================
+
+```catala
+declaration r content list of boolean equals map each x among l to x > 0 and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (BOOLEAN))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_map
+          (MAP_EACH)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (TO)
+          (e_binop
+            (e_binop
+              (e_variable
+                (variable))
+              (GREATER)
+              (literal
+                (INT_LITERAL)))
+            (AND)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (fold +): combine all x among l in acc initially 0 with (acc + x)
+============================================================================
+
+```catala
+declaration r content integer equals combine all x among l in acc initially 0 with acc + x
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_coll_fold
+          (COMBINE)
+          (ALL)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (IN)
+          (binder
+            (variable))
+          (INITIALLY)
+          (literal
+            (INT_LITERAL))
+          (WITH)
+          (e_binop
+            (e_variable
+              (variable))
+            (PLUS)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (filter and): list of x among l such that (x > 0 and b)
+============================================================================
+
+```catala
+declaration r content list of integer equals list of x among l such that x > 0 and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_filter
+          (LIST)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (SUCH)
+          (THAT)
+          (e_binop
+            (e_binop
+              (e_variable
+                (variable))
+              (GREATER)
+              (literal
+                (INT_LITERAL)))
+            (AND)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (filter map +): map each x among l such that x > 0 to (x + 1)
+============================================================================
+
+```catala
+declaration r content list of integer equals map each x among l such that x > 0 to x + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (LIST)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (DEFINED_AS)
+      (expression
+        (e_coll_filter_map
+          (MAP_EACH)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (SUCH)
+          (THAT)
+          (e_binop
+            (e_variable
+              (variable))
+            (GREATER)
+            (literal
+              (INT_LITERAL)))
+          (TO)
+          (e_binop
+            (e_variable
+              (variable))
+            (PLUS)
+            (literal
+              (INT_LITERAL))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (exists and): exists x among l such that (x > 0 and b)
+============================================================================
+
+```catala
+declaration r content boolean equals exists x among l such that x > 0 and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_coll_exists
+          (EXISTS)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (SUCH)
+          (THAT)
+          (e_binop
+            (e_binop
+              (e_variable
+                (variable))
+              (GREATER)
+              (literal
+                (INT_LITERAL)))
+            (AND)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (for all and): for all x among l we have (x > 0 and b)
+============================================================================
+
+```catala
+declaration r content boolean equals for all x among l we have x > 0 and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_coll_forall
+          (FOR)
+          (ALL)
+          (binder
+            (variable))
+          (AMONG)
+          (e_variable
+            (variable))
+          (WE_HAVE)
+          (e_binop
+            (e_binop
+              (e_variable
+                (variable))
+              (GREATER)
+              (literal
+                (INT_LITERAL)))
+            (AND)
+            (e_variable
+              (variable))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (if >): if b then n else (n > 0)
+============================================================================
+
+```catala
+declaration r content boolean equals if b then n else n > 0
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_ifthenelse
+          (IF)
+          (e_variable
+            (variable))
+          (THEN)
+          (e_variable
+            (variable))
+          (ELSE)
+          (e_binop
+            (e_variable
+              (variable))
+            (GREATER)
+            (literal
+              (INT_LITERAL))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (let +): let y equals n in (y + 1)
+============================================================================
+
+```catala
+declaration r content integer equals let y equals n in y + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_letin
+          (LET)
+          (binder
+            (variable))
+          (DEFINED_AS)
+          (e_variable
+            (variable))
+          (IN)
+          (e_binop
+            (e_variable
+              (variable))
+            (PLUS)
+            (literal
+              (INT_LITERAL))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (match +): match e with pattern -- A: n -- B content y: (y + 1)
+============================================================================
+
+```catala
+declaration r content integer equals match e with pattern -- A: n -- B content y: y + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEFINED_AS)
+      (expression
+        (e_match
+          (MATCH)
+          (e_variable
+            (variable))
+          (WITH_PATT)
+          (ALT)
+          (match_case
+            (qconstructor
+              (constructor_name))
+            (COLON)
+            (e_variable
+              (variable)))
+          (ALT)
+          (match_case
+            (qconstructor
+              (constructor_name))
+            (CONTENT)
+            (binder
+              (variable))
+            (COLON)
+            (e_binop
+              (e_variable
+                (variable))
+              (PLUS)
+              (literal
+                (INT_LITERAL)))))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (enum content +): (B content n) + 1
+============================================================================
+
+```catala
+declaration r content E equals B content n + 1
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (qenum_struct
+            (enum_struct_name))))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_enum
+            (qconstructor
+              (constructor_name))
+            (CONTENT)
+            (e_variable
+              (variable)))
+          (PLUS)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+============================================================================
+Operator precedence (find max default and): ((content of x among l such that x is minimum or if list empty then 0) > n) and b
+============================================================================
+
+```catala
+declaration r content boolean equals content of x among l such that x is minimum or if list empty then 0 > n and b
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (BOOLEAN)))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_binop
+            (e_coll_find
+              (CONTENT)
+              (OF)
+              (binder
+                (variable))
+              (AMONG)
+              (e_variable
+                (variable))
+              (SUCH)
+              (THAT)
+              (e_variable
+                (variable))
+              (IS)
+              (MINIMUM)
+              (OR_EMPTY)
+              (THEN)
+              (literal
+                (INT_LITERAL)))
+            (GREATER)
+            (e_variable
+              (variable)))
+          (AND)
+          (e_variable
+            (variable)))))
+    (end_block_fence
+      (END_CODE))))

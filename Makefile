@@ -21,7 +21,7 @@ COMBINATIONS = $(foreach V,$(VARIANTS),$(foreach L,$(LANGS),$V_$L))
 
 LIB = $(OUTDIR)/libtree-sitter-$(TREESITTER_CATALA_VARIANT)_$(TREESITTER_CATALA_LANG).so
 
-.PHONY: generate lib all test abi15 test-abi15 dist-clean ALWAYS
+.PHONY: generate lib all test abi15 test-abi15 check-precedence dist-clean ALWAYS
 
 all: $(LANGS)
 
@@ -89,6 +89,17 @@ test-abi15: ALWAYS
 	    echo "Testing catala_$$l (ABI 15)"; \
 	    (cd $$d && tree-sitter test --rebuild --exclude ' \(ABI 14\)$$') || exit 1; \
 	  fi; \
+	done
+
+# Checks that the committed catala_expr_<lang> parsers group operators as the
+# Catala compiler does (test/precedence/compare.py), with the compiler binary
+# in $(CATALA)
+CATALA ?= catala
+check-precedence: ALWAYS
+	@for l in $(LANGS); do \
+	  echo "Comparing the precedence of catala_expr_$$l with $(CATALA)"; \
+	  CATALA=$(CATALA) ./test/precedence/compare.py catala_expr_$$l test/precedence/$$l.json \
+	    || exit 1; \
 	done
 
 dist-clean:
