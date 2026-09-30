@@ -5091,7 +5091,7 @@
   "externals": [
     {
       "type": "SYMBOL",
-      "name": "SCOPE"
+      "name": "_SCOPE_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5099,27 +5099,27 @@
     },
     {
       "type": "SYMBOL",
-      "name": "DECREASING"
+      "name": "_DECREASING_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
-      "name": "INCREASING"
+      "name": "_INCREASING_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
-      "name": "LIST"
+      "name": "_LIST_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
-      "name": "OPTION"
+      "name": "_OPTION_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
-      "name": "DEFINED_AS"
+      "name": "_DEFINED_AS_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
-      "name": "WILDCARD"
+      "name": "_WILDCARD_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5135,7 +5135,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "WE_HAVE"
+      "name": "_WE_HAVE_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5143,7 +5143,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "TO"
+      "name": "_TO_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5163,7 +5163,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "XOR"
+      "name": "_XOR_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",

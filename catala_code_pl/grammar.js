@@ -78,7 +78,7 @@ const tokens_local = {
     MINIMUM: "minimum",
     COMBINE: "combine",
     MAP_EACH: words("map each"),
-    TO: /to/,
+    TO: "to",
     INITIALLY: "initially",
     IMPOSSIBLE: "impossible",
     IS: "is",
@@ -164,9 +164,9 @@ const tokens_local = {
     NOT: "non",
     MAXIMUM: "maximum",
     MINIMUM: "minimum",
-    COMBINE: /combine/,
+    COMBINE: "combine",
     MAP_EACH: words("transforme chaque"),
-    TO: /en/,
+    TO: "en",
     INITIALLY: "initialement",
     IMPOSSIBLE: "impossible",
     IS: "est",
@@ -334,9 +334,11 @@ const tokens = Object.assign({}, tokens_local[lang], tokens_international)
 
 // The tokens that the compiler's lexer may lex as a multi-word keyword (the
 // MR_ regexps of the rollback rule of lex_code), in the order of
-// enum TokenType in scanner.c. They are the externals of every grammar: the
-// scanner lexes those that are words(...) in the language and declines the
-// others, which the internal lexer then lexes.
+// enum TokenType in scanner.c. Every grammar has one external per entry, in
+// this order: the token itself where it is words(...) in the language, which
+// the scanner lexes; otherwise a placeholder (not_scanned), never valid, so
+// that the single-word token is an ordinary internal token, which can be a
+// reserved word.
 const scanner_tokens = [
   'SCOPE',
   'DEPENDS',
@@ -362,6 +364,7 @@ const scanner_tokens = [
 ]
 
 const is_words = t => typeof t === 'object' && t !== null && 'words' in t
+const not_scanned = t => '_' + t + '_NOT_SCANNED'
 
 const inline = $ => [
   // $.law_text,
@@ -369,7 +372,8 @@ const inline = $ => [
 
 const definition = {
   name: name,
-  externals: $ => scanner_tokens.map(t => $[t]),
+  externals: $ => scanner_tokens.map(t =>
+    is_words(tokens[t]) ? $[t] : $[not_scanned(t)]),
   inline: inline,
   word: $ => $._LIDENT,
   // The compiler's lexer lexes the duration units as keywords everywhere in

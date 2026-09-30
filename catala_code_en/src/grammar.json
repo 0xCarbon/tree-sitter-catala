@@ -4400,7 +4400,7 @@
     "TO": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
+        "type": "STRING",
         "value": "to"
       }
     },
@@ -5060,7 +5060,7 @@
   "externals": [
     {
       "type": "SYMBOL",
-      "name": "SCOPE"
+      "name": "_SCOPE_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5068,11 +5068,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "DECREASING"
+      "name": "_DECREASING_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
-      "name": "INCREASING"
+      "name": "_INCREASING_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5084,11 +5084,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "DEFINED_AS"
+      "name": "_DEFINED_AS_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
-      "name": "WILDCARD"
+      "name": "_WILDCARD_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5100,7 +5100,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "WITH"
+      "name": "_WITH_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5112,11 +5112,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "TO"
+      "name": "_TO_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
-      "name": "SUCH"
+      "name": "_SUCH_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5132,7 +5132,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "XOR"
+      "name": "_XOR_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",

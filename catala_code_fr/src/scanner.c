@@ -35,7 +35,8 @@
    Same order as `scanner_tokens` in grammar.js, which lists them as the
    grammar's externals; `make generate` checks that the two lists agree. In a
    language where one of them is a single word, the language's table has no
-   entry for it and the internal lexer lexes it. */
+   entry for it, the grammar's external at its position is a placeholder that
+   is never valid, and the internal lexer lexes the token. */
 enum TokenType {
   SCOPE,
   DEPENDS,

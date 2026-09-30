@@ -4396,14 +4396,14 @@
     "COMBINE": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
+        "type": "STRING",
         "value": "combine"
       }
     },
     "TO": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
+        "type": "STRING",
         "value": "en"
       }
     },
@@ -5071,11 +5071,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "DECREASING"
+      "name": "_DECREASING_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
-      "name": "INCREASING"
+      "name": "_INCREASING_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5103,7 +5103,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "WITH"
+      "name": "_WITH_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5115,11 +5115,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "TO"
+      "name": "_TO_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
-      "name": "SUCH"
+      "name": "_SUCH_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",
@@ -5131,7 +5131,7 @@
     },
     {
       "type": "SYMBOL",
-      "name": "AND_THEN"
+      "name": "_AND_THEN_NOT_SCANNED"
     },
     {
       "type": "SYMBOL",

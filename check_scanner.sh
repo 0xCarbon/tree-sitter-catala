@@ -1,9 +1,11 @@
 #!/bin/sh
 # Usage: check_scanner.sh <lang> <grammar directory>
 # Checks, after `tree-sitter generate`, that the grammar's externals are
-# enum TokenType of scanner.c in the same order, and that the language's
-# table (scanner_<lang>.h) has an entry for exactly the externals that the
-# grammar leaves to the scanner (those without a rule of their own).
+# enum TokenType of scanner.c in the same order (a placeholder
+# _<TOKEN>_NOT_SCANNED standing for <TOKEN>), and that the language's table
+# (scanner_<lang>.h) has an entry for exactly the externals that the grammar
+# leaves to the scanner (those that are not placeholders and have no rule of
+# their own).
 set -e
 lang=$1
 dir=$2
@@ -11,10 +13,12 @@ json=$dir/src/grammar.json
 
 externals=$(node -e '
   const g = require(process.argv[1]);
-  console.log(g.externals.map(e => e.name).join(" "))' "$PWD/$json")
+  console.log(g.externals.map(e => e.name.replace(/^_(.*)_NOT_SCANNED$/, "$1"))
+                         .join(" "))' "$PWD/$json")
 scanned=$(node -e '
   const g = require(process.argv[1]);
-  console.log(g.externals.filter(e => !(e.name in g.rules))
+  console.log(g.externals.filter(e => !(e.name in g.rules) &&
+                                      !e.name.endsWith("_NOT_SCANNED"))
                          .map(e => e.name).sort().join(" "))' "$PWD/$json")
 enum=$(sed -n '/^enum TokenType {/,/^};/s/^  \([A-Z_]*\),$/\1/p' scanner.c |
        tr '\n' ' ' | sed 's/ $//')
