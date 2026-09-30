@@ -14,7 +14,7 @@ COMBINATIONS = $(foreach V,$(VARIANTS),$(foreach L,$(LANGS),$V_$L))
 
 LIB = $(SUBDIR)/libtree-sitter-$(TREESITTER_CATALA_VARIANT)_$(TREESITTER_CATALA_LANG).so
 
-.PHONY: generate lib all dist-clean ALWAYS
+.PHONY: generate lib all test dist-clean ALWAYS
 
 all: $(LANGS)
 
@@ -39,6 +39,15 @@ generate: Cargo.toml.in grammar.js ALWAYS
 	@sed 's/$${TREESITTER_CATALA_VARIANT}/'$(TREESITTER_CATALA_VARIANT)'/g; s/$${TREESITTER_CATALA_LANG}/'$(TREESITTER_CATALA_LANG)'/g' $< > $(SUBDIR)/Cargo.toml
 	@cp grammar.js $(SUBDIR)
 	@cd $(SUBDIR) && tree-sitter generate --abi=14 # emacs requires <15
+
+# Runs the corpus tests (catala_<lang>/test/corpus) of every language that has one
+test: ALWAYS
+	@for l in $(LANGS); do \
+	  if [ -d catala_$$l/test/corpus ]; then \
+	    echo "Testing catala_$$l"; \
+	    (cd catala_$$l && tree-sitter test) || exit 1; \
+	  fi; \
+	done
 
 dist-clean:
 	rm -rf $(LANGS) $(LIBS) $(VARIANTS)_??
