@@ -1,0 +1,564 @@
+==============================================
+Structure with dane, całkowita and czastrwania
+==============================================
+
+```catala
+deklaracja struktura Osoba:
+  dane wiek typu całkowita
+  dane staz typu czastrwania
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (struct_decl
+      (DECLARATION)
+      (STRUCT)
+      (enum_struct_name)
+      (COLON)
+      (struct_decl_item
+        (DATA)
+        (field_name)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (INTEGER))))
+      (struct_decl_item
+        (DATA)
+        (field_name)
+        (CONTENT)
+        (typ
+          (primitive_typ
+            (DURATION)))))
+    (end_block_fence
+      (END_CODE))))
+
+=======================
+Function with zależy od
+=======================
+
+```catala
+deklaracja podwoj typu całkowita
+  zależy od n typu całkowita
+  wynosi n * 2
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (INTEGER)))
+      (DEPENDS)
+      (params_decl
+        (param_decl
+          (variable)
+          (CONTENT)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (DEFINED_AS)
+      (expression
+        (e_binop
+          (e_variable
+            (variable))
+          (MULT)
+          (literal
+            (INT_LITERAL)))))
+    (end_block_fence
+      (END_CODE))))
+
+=========================
+Type variable with rodzaj
+=========================
+
+```catala
+deklaracja tozsamosc typu cokolwiek z rodzaj t
+  zależy od v typu cokolwiek z rodzaj t
+  wynosi v
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (toplevel_def
+      (DECLARATION)
+      (variable)
+      (CONTENT)
+      (typ
+        (primitive_typ
+          (WILDCARD)
+          (OF)
+          (TYPE)
+          (type_variable)))
+      (DEPENDS)
+      (params_decl
+        (param_decl
+          (variable)
+          (CONTENT)
+          (typ
+            (primitive_typ
+              (WILDCARD)
+              (OF)
+              (TYPE)
+              (type_variable)))))
+      (DEFINED_AS)
+      (expression
+        (e_variable
+          (variable))))
+    (end_block_fence
+      (END_CODE))))
+
+===================
+List type without z
+===================
+
+```catala
+deklaracja zakres Test:
+  wyjście wieki typu lista całkowita
+  wyjście moze typu opcjonalny całkowita
+  wyjście spelniony warunek
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope_decl
+      (DECLARATION)
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (LIST)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONTENT)
+        (typ
+          (OPTION)
+          (typ
+            (primitive_typ
+              (INTEGER)))))
+      (scope_decl_item
+        (scope_decl_item_attribute
+          (OUTPUT))
+        (variable)
+        (CONDITION)))
+    (end_block_fence
+      (END_CODE))))
+
+=================================
+Filter with lista and takie że to
+=================================
+
+```catala
+zakres Test:
+  definicja dorosli wynosi lista a wśród wieki takie że to a >= 18
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_filter
+            (LIST)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (SUCH)
+            (THAT)
+            (e_binop
+              (e_variable
+                (variable))
+              (GREATER_EQUAL)
+              (literal
+                (INT_LITERAL)))))))
+    (end_block_fence
+      (END_CODE))))
+
+====================================
+Maksimum with lub jeżeli lista pusta
+====================================
+
+```catala
+zakres Test:
+  definicja najstarszy wynosi maksimum z wieki lub jeżeli lista pusta wtedy 0
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_extremum
+            (MAXIMUM)
+            (OF)
+            (e_variable
+              (variable))
+            (OR_EMPTY)
+            (THEN)
+            (literal
+              (INT_LITERAL))))))
+    (end_block_fence
+      (END_CODE))))
+
+===============
+Połączyć with w
+===============
+
+```catala
+zakres Test:
+  definicja razem wynosi
+    połączyć wszystkie a wśród wieki w acc początkowo 0 wraz z acc + a
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_fold
+            (COMBINE)
+            (ALL)
+            (binder
+              (variable))
+            (AMONG)
+            (e_variable
+              (variable))
+            (IN)
+            (binder
+              (variable))
+            (INITIALLY)
+            (literal
+              (INT_LITERAL))
+            (WITH)
+            (e_binop
+              (e_variable
+                (variable))
+              (PLUS)
+              (e_variable
+                (variable)))))))
+    (end_block_fence
+      (END_CODE))))
+
+================================
+Durations with miesiąc and dzień
+================================
+
+```catala
+zakres Test:
+  definicja okres wynosi 1 rok + 2 miesiąc + 3 dzień
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_binop
+            (e_binop
+              (literal
+                (INT_LITERAL)
+                (unit_literal
+                  (YEAR)))
+              (PLUS)
+              (literal
+                (INT_LITERAL)
+                (unit_literal
+                  (MONTH))))
+            (PLUS)
+            (literal
+              (INT_LITERAL)
+              (unit_literal
+                (DAY)))))))
+    (end_block_fence
+      (END_CODE))))
+
+=========================
+Money operator suffix PLN
+=========================
+
+```catala
+zakres Test:
+  definicja kwota wynosi 10 PLN +PLN 5.50 PLN
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_binop
+            (literal
+              (MONEY_AMOUNT))
+            (PLUS)
+            (literal
+              (MONEY_AMOUNT))))))
+    (end_block_fence
+      (END_CODE))))
+
+=================
+Fałsz albo prawda
+=================
+
+```catala
+zakres Test:
+  definicja flaga wynosi fałsz albo prawda
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_binop
+            (literal
+              (FALSE))
+            (XOR)
+            (literal
+              (TRUE))))))
+    (end_block_fence
+      (END_CODE))))
+
+===================
+Rule with spełnione
+===================
+
+```catala
+zakres Test:
+  zasada spelniony pod warunkiem najstarszy > 40 konsekwencja spełnione
+  zasada spelniony pod warunkiem najstarszy > 90 konsekwencja nie spełnione
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (rule
+        (RULE)
+        (scope_var
+          (variable))
+        (UNDER_CONDITION)
+        (expression
+          (e_binop
+            (e_variable
+              (variable))
+            (GREATER)
+            (literal
+              (INT_LITERAL))))
+        (CONSEQUENCE)
+        (FILLED))
+      (rule
+        (RULE)
+        (scope_var
+          (variable))
+        (UNDER_CONDITION)
+        (expression
+          (e_binop
+            (e_variable
+              (variable))
+            (GREATER)
+            (literal
+              (INT_LITERAL))))
+        (CONSEQUENCE)
+        (NOT)
+        (FILLED)))
+    (end_block_fence
+      (END_CODE))))
+
+========================
+Sort by increasing order
+========================
+
+```catala
+zakres Test:
+  definicja posortowane wynosi sort wieki by increasing order
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_coll_sort
+            (SORT)
+            (e_variable
+              (variable))
+            (ORDER_INCREASING)))))
+    (end_block_fence
+      (END_CODE))))
+
+========================
+Let in with w and jeżeli
+========================
+
+```catala
+zakres Test:
+  definicja wynik wynosi
+    niech y wynosi podwoj z 3 w
+    jeżeli y > 5 wtedy tozsamosc z y inaczej 0
+```
+
+---
+
+(source_file
+  (code_block
+    (begin_code_fence
+      (BEGIN_CODE))
+    (scope
+      (SCOPE)
+      (scope_name)
+      (COLON)
+      (definition
+        (DEFINITION)
+        (scope_var
+          (variable))
+        (DEFINED_AS)
+        (expression
+          (e_letin
+            (LET)
+            (binder
+              (variable))
+            (DEFINED_AS)
+            (e_apply
+              (e_variable
+                (variable))
+              (OF)
+              (fun_arguments
+                (fun_argument
+                  (literal
+                    (INT_LITERAL)))))
+            (IN)
+            (e_ifthenelse
+              (IF)
+              (e_binop
+                (e_variable
+                  (variable))
+                (GREATER)
+                (literal
+                  (INT_LITERAL)))
+              (THEN)
+              (e_apply
+                (e_variable
+                  (variable))
+                (OF)
+                (fun_arguments
+                  (fun_argument
+                    (e_variable
+                      (variable)))))
+              (ELSE)
+              (literal
+                (INT_LITERAL)))))))
+    (end_block_fence
+      (END_CODE))))
